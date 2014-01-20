@@ -4,8 +4,8 @@ Bundler.require :default
 
 require './base'
 
-controllers = File.join('./', 'controllers ** *_controller.rb')
-Dir.glob(controllers).each {|file| require file }
+controllers = File.join('./', %w(controllers ** *_controller.rb))
+Dir.glob(controllers).each { |file| require file }
 
 controllers = [ShowTracker::MainController]
 
