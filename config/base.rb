@@ -1,13 +1,13 @@
 module ShowTracker
   class Base < Sinatra::Base
     register Sinatra::ConfigFile
-    config_file 'config/config.yml'
+    config_file 'config.yml'
 
     enable :sessions
     set :environment, settings.environment
 
-    set :views,         File.expand_path(settings.views_path,  __FILE__)
-    set :public_folder, File.expand_path(settings.public_path, __FILE__)
+    set :views,         File.expand_path(settings.views_path)
+    set :public_folder, File.expand_path(settings.public_path)
 
     configure :development do
       DB = Sequel.sqlite settings.development[:sqlite_path]

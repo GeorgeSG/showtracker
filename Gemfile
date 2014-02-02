@@ -13,6 +13,11 @@ group :development do
   gem 'pry',              require: false
 end
 
+group :test do
+  gem 'rspec'
+  gem 'rack-test', :require => "rack/test"
+end
+
 group :production do
   gem 'pg', require: false
 end

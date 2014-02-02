@@ -7,7 +7,7 @@ environments:
 # Choose environment
 environment: development
 
-# Paths (relative to ./controllers) to the views and public folders
+# Paths to various folders
 views_path:      './views'
 public_path:     './public'
 migrations_path: './db/migrate'
@@ -16,6 +16,7 @@ migrations_path: './db/migrate'
 development:
   sqlite_path: 'db/showtracker.db'
 
+# Production specific settings
 production:
   db_host:     'localhost'
   db_name:     'liberta'
