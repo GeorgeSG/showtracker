@@ -49,6 +49,8 @@ namespace :db do
     puts 'Done!'
   end
 
+  task :reset => [:drop, :migrate]
+
   task :migration, [:name] do |task, arguments|
     puts 'Generating a new migration...'
     migration_name      = arguments[:name].downcase.gsub(/\s/, '_')
@@ -66,10 +68,8 @@ end].strip.freeze
     File.open(migration_path, "w+") { |file| file.write initial_content }
 
     puts "Successfully created migration ##{migration_index}: #{migration_path}"
-    puts "Done!"
+    puts 'Done!'
   end
-
-  task :reset => [:drop, :migrate]
 
   task :help do
     puts 'Run with rake db:command. Available commands:'
