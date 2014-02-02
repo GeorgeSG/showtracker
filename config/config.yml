@@ -8,8 +8,8 @@ environments:
 environment: development
 
 # Paths (relative to ./controllers) to the views and public folders
-views_path:      '../views'
-public_path:     '../public'
+views_path:      './views'
+public_path:     './public'
 migrations_path: './db/migrate'
 
 # Development specific settings

@@ -1,0 +1,8 @@
+<h1>Shows</h1>
+<% unless @shows.nil? %>
+<ul>
+  <% @shows.each do |show| %>
+    <li><%= show.name %> - <%= show.seasons.count %> seasons</li>
+  <% end %>
+</ul>
+<% end %>

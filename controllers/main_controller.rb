@@ -1,14 +1,10 @@
 module ShowTracker
   class MainController < Base
     NAMESPACE = '/'.freeze
+    set :views, settings.views + '/home'
 
     get '/' do
-      erb 'hello world'
+      erb :index
     end
-
-    get '/test' do
-      erb 'hello test'
-    end
-
   end
 end
