@@ -9,6 +9,8 @@ module ShowTracker
     set :views,         File.expand_path(settings.views_path)
     set :public_folder, File.expand_path(settings.public_path)
 
+    Bundler.require settings.environment
+
     configure :development do
       DB = Sequel.sqlite settings.development[:sqlite_path]
     end
