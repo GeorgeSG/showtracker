@@ -10,7 +10,7 @@ module ShowTracker
     end
 
     get '/my-shows', auth: :logged do
-      erb "my shows"
+      erb :'shows/my-shows'
     end
   end
 end
