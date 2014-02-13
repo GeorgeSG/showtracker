@@ -1,12 +1,11 @@
 require './config/boot'
 
-use Sass::Plugin::Rack
-
 #===============================================================================
 # Map Top Level Controllers
 #===============================================================================
 
 controllers = [
+  ShowTracker::AuthController,
   ShowTracker::MainController,
   ShowTracker::ShowsController
 ]

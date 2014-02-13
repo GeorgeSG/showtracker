@@ -1,6 +1,13 @@
 module ShowTracker
   class Base < Sinatra::Base
+    use Sass::Plugin::Rack
+    use Rack::Flash
+
+    register Sinatra::Partial
     register Sinatra::ConfigFile
+
+    helpers Sinatra::RedirectWithFlash
+
     config_file 'config/config.yml'
 
     enable :sessions
@@ -8,6 +15,7 @@ module ShowTracker
 
     set :views,         File.expand_path(settings.views_path)
     set :public_folder, File.expand_path(settings.public_path)
+    set :partial_template_engine, :erb
 
     Bundler.require settings.environment
 
@@ -27,6 +35,17 @@ module ShowTracker
                            host: db_host,
                            user: db_user,
                            password: db_password)
+    end
+
+    register do
+      def auth (type)
+        condition do
+          unless send "#{type}?"
+            flash[:info] = 'You need to be logged in to access this page.'
+            redirect "auth/login"
+          end
+        end
+      end
     end
   end
 end

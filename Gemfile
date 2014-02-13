@@ -12,6 +12,7 @@ gem 'rack-flash3',     '~> 1.0.5', require: 'rack-flash'
 gem 'sinatra-redirect-with-flash', require: 'sinatra/redirect_with_flash'
 
 gem 'sequel', '~> 4.7.0'
+gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'sass', '~> 3.2.14'
 
