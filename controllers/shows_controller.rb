@@ -1,13 +1,10 @@
 module ShowTracker
   class ShowsController < Base
-    configure do
-      NAMESPACE = '/shows'.freeze
-      set :views, settings.views + NAMESPACE
-    end
+    NAMESPACE = '/shows'.freeze
 
     get '/' do
       @shows = Show.all
-      erb :index
+      erb :'shows/index'
     end
   end
 end
