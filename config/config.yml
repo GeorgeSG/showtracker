@@ -19,6 +19,6 @@ development:
 # Production specific settings
 production:
   db_host:     'localhost'
-  db_name:     'liberta'
-  db_user:     'liberta'
-  db_password: 'liberta'
+  db_name:     'showtracker'
+  db_user:     'showtracker'
+  db_password: 'showtracker'
