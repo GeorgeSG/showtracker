@@ -5,7 +5,7 @@ Sequel.migration do
       String :name,       null: false
       String :descrition, text: true
 
-      foreign_key :season_id, :seasons
+      foreign_key :season_id, :seasons, null: false
     end
   end
 end

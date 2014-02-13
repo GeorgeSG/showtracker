@@ -4,7 +4,7 @@ Sequel.migration do
       primary_key :id
       Integer :number
 
-      foreign_key :show_id, :shows
+      foreign_key :show_id, :shows, null: false
     end
   end
 end
