@@ -21,6 +21,7 @@ group :development do
   gem 'awesome_print',    require: false
   gem 'rerun',            require: false
   gem 'pry',              require: false
+  gem 'faker'
 end
 
 group :test do

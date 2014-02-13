@@ -8,7 +8,10 @@ GEM
     daemons (1.1.9)
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
+    faker (1.2.0)
+      i18n (~> 0.5)
     ffi (1.9.3)
+    i18n (0.6.9)
     listen (1.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -73,6 +76,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bcrypt-ruby (~> 3.1.2)
+  faker
   pg
   pry
   rack-flash3 (~> 1.0.5)
