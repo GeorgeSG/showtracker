@@ -41,7 +41,7 @@
                   </ul>
                 </li>
                 <% if logged? %>
-                  <li><a href="/shows/my-shows">My Shows</a></lI>
+                  <li><a href="/users/my-shows">My Shows (<%= current_user.shows.count %>)</a></lI>
                 <% end %>
               </ul>
               <form class="navbar-form navbar-left" id="search_form" role="search" action="/shows/search">
@@ -59,11 +59,11 @@
                     <ul class="dropdown-menu">
                       <li><a href="/user/preferences"><span class="glyphicon glyphicon-cog"></span> Preferences</a></li>
                       <li class="divider"></li>
-                      <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                      <li><a href="/users/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     </ul>
                   </li>
                 <% else %>
-                  <li><a href="/auth/login">Login</a></li>
+                  <li><a href="/users/login">Login</a></li>
                 <% end %>
               </ul>
             </div>

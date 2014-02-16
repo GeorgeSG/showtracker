@@ -59,8 +59,9 @@ module ShowTracker
       @show = Show.where(id: params[:show_id]).first
       redirect '/', error: 'There is no such show in the database' if @show.nil?
 
-      p @show.seasons
-
+      if logged?
+        @usershow = Usershow.where(user_id: current_user.id, show_id: @show.id).first
+      end
 
       @title = @show.name
       erb :'shows/view'

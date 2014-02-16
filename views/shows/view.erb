@@ -1,6 +1,38 @@
+<div class="pull-right">
+<% if logged? && current_user.has_show?(@show.id) %>
+  <table class="table">
+    <thead><tr><th class="text-center">Season</th><th class="text-center">Episode</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="text-center">
+          <a href="/users/increment-season/<%= @usershow.id %>" class="btn btn-success btn-hover btn-xs">
+            <span class="glyphicon glyphicon-chevron-up">
+          </a>
+          <span style='padding: 0 5px'><%= @usershow.season || 0 %></span>
+          <a href="/users/decrement-season/<%= @usershow.id %>" class="btn btn-danger btn-hover btn-xs">
+            <span class="glyphicon glyphicon-chevron-down">
+          </a>
+        </td>
+        <td class="text-center">
+          <a href="/users/increment-episode/<%= @usershow.id %>" class="btn btn-success btn-hover btn-xs">
+            <span class="glyphicon glyphicon-chevron-up">
+          </a>
+          <span style='padding: 0 5px'><%= @usershow.episode || 0 %></span>
+          <a href="/users/decrement-episode/<%= @usershow.id %>" class="btn btn-danger btn-hover btn-xs">
+            <span class="glyphicon glyphicon-chevron-down">
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-danger" href="/users/remove-show/<%= @show.id %>">Remove from My Shows</a>
+<% else %>
+  <a class="btn btn-success" href="/users/add-show/<%= @show.id %>">Add to My Shows</a>
+<% end %>
+</div>
+
 <img src="http://thetvdb.com/banners/_cache/<%= @show.poster %>" /><br />
 
-<a class="btn btn-success" href="/users/add-show/<%= @show.id %>">Add To My Shows</a>
 
 Status: <%= @show.status %><br />
 Airs on: <%= @show.airs_day %><br />
