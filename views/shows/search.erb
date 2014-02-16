@@ -1,0 +1,12 @@
+<% @api_results.each do |show| %>
+  <a href="/shows/add/<%= show.id %>">
+  <div class="card small">
+    <% if show.poster %>
+      <img src="http://thetvdb.com/banners/_cache/<%= show.poster %>" />
+    <% end %>
+    <div class="content">
+      <h1><%= show.series_name %></h1>
+    </div>
+  </div>
+</a>
+<% end %>

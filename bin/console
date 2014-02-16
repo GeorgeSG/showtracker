@@ -4,7 +4,11 @@ require 'sequel'
 require 'awesome_print'
 require 'pry'
 
-DB = Sequel.sqlite('./db/showtracker.db')
+DB = Sequel.postgres('showtracker',
+                     host: 'localhost',
+                     user: 'showtracker',
+                     password: 'showtracker')
+
 Dir['./{models}/**/*.rb'].each { |file| require file }
 
 Pry.start

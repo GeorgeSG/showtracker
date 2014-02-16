@@ -1,4 +1,3 @@
 class Episode < Sequel::Model
-  many_to_one :season
-  many_to_many :users
+  many_to_one :show
 end

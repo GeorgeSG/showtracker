@@ -11,6 +11,7 @@ gem 'sinatra-partial',             require: 'sinatra/partial'
 gem 'rack-flash3',     '~> 1.0.5', require: 'rack-flash'
 gem 'sinatra-redirect-with-flash', require: 'sinatra/redirect_with_flash'
 
+gem 'pg', require: false
 gem 'sequel', '~> 4.7.0'
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
@@ -19,7 +20,6 @@ gem 'sass', '~> 3.2.14'
 gem 'the_tv_db'
 
 group :development do
-  gem 'sqlite3', '~>1.3', require: false
   gem 'awesome_print',    require: false
   gem 'rerun',            require: false
   gem 'pry',              require: false
@@ -31,6 +31,3 @@ group :test do
   gem 'rack-test', require: 'rack/test'
 end
 
-group :production do
-  gem 'pg', require: false
-end

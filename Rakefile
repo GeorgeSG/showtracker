@@ -13,23 +13,15 @@ namespace :db do
   environment = settings['environment']
   env_settngs = settings[environment]
 
-  # Setup Database Connection
-  case environment
-  when 'development'
-    sqlite_path = env_settngs['sqlite_path']
-    DB = Sequel.sqlite(sqlite_path)
+  db_host     = env_settngs['db_host']
+  db_name     = env_settngs['db_name']
+  db_user     = env_settngs['db_user']
+  db_password = env_settngs['db_password']
 
-  when 'production'
-    db_host     = env_settngs['db_host']
-    db_name     = env_settngs['db_name']
-    db_user     = env_settngs['db_user']
-    db_password = env_settngs['db_password']
-
-    DB = Sequel.postgres(db_name,
-                         host: db_host,
-                         user: db_user,
-                         password: db_password)
-  end
+  DB = Sequel.postgres(db_name,
+                       host: db_host,
+                       user: db_user,
+                       password: db_password)
 
   task :drop do
     puts 'Reverting all migrations...'

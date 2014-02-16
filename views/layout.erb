@@ -35,7 +35,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/shows/">Shows</a></li>
                 <% if logged? %>
-                  <li><a href="/shows/my-shows">My Shows (<%= current_user.shows.count %>)</a></lI>
+                  <li><a href="/shows/my-shows">My Shows</a></lI>
                 <% end %>
               </ul>
               <form class="navbar-form navbar-left" id="search_form" role="search" action="/shows/search">

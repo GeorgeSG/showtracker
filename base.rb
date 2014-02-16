@@ -21,21 +21,31 @@ module ShowTracker
     Bundler.require settings.environment
 
     configure :development do
-      DB = Sequel.sqlite settings.development[:sqlite_path]
-    end
-
-    configure :production do
-      disable :show_exceptions
-
-      db_host     = settings.production['db_host']
-      db_name     = settings.production['db_name']
-      db_user     = settings.production['db_user']
-      db_password = settings.production['db_password']
-
+      db_host     = settings.development['db_host']
+      db_name     = settings.development['db_name']
+      db_user     = settings.development['db_user']
+      db_password = settings.development['db_password']
       DB = Sequel.postgres(db_name,
                            host: db_host,
                            user: db_user,
                            password: db_password)
+    end
+
+    configure :production do
+      disable :show_exceptions
+      db_host     = settings.production['db_host']
+      db_name     = settings.production['db_name']
+      db_user     = settings.production['db_user']
+      db_password = settings.production['db_password']
+      DB = Sequel.postgres(db_name,
+                           host: db_host,
+                           user: db_user,
+                           password: db_password)
+    end
+
+
+    configure do
+      TVDB = TheTvDB.new
     end
 
     register do

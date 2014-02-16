@@ -16,7 +16,10 @@ tvdb_api_key: '21D0254CFFE7F010'
 
 # Development specific settings
 development:
-  sqlite_path: 'db/showtracker.db'
+  db_host:     'localhost'
+  db_name:     'showtracker'
+  db_user:     'showtracker'
+  db_password: 'showtracker'
 
 # Production specific settings
 production:
