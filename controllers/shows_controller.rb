@@ -43,7 +43,8 @@ module ShowTracker
           @title = 'All Shows'
           @url = NAMESPACE + '/all/'
         else
-          @title = "Search Results (<em>#{criteria.count}</em>)"
+          @title = "Search Results"
+          @subtitle = "(#{criteria.count})"
           @url = NAMESPACE + '/search/'
         end
 

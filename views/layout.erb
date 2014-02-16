@@ -41,7 +41,7 @@
                   </ul>
                 </li>
                 <% if logged? %>
-                  <li><a href="/users/my-shows">My Shows (<%= current_user.shows.count %>)</a></lI>
+                  <li><a href="/users/my-shows">My Shows <span class="label label-primary"><%= current_user.shows.count %></span></a></lI>
                 <% end %>
               </ul>
               <form class="navbar-form navbar-left" id="search_form" role="search" action="/shows/search">
@@ -78,7 +78,12 @@
               </div>
             <% end %>
           <% end %>
-          <% unless @title.nil? %><h1><%= @title %></h1><% end %>
+          <% unless @title.nil? %>
+            <h1>
+              <%= @title %>
+              <% unless @subtitle.nil? %><small><%= @subtitle %></small><% end %>
+            </h1>
+          <% end %>
           <%= yield %>
         </div>
       </div>
