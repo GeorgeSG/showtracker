@@ -1,0 +1,33 @@
+<img src="http://thetvdb.com/banners/_cache/<%= @show.poster %>" /><br />
+
+<a class="btn btn-success" href="/users/add-show/<%= @show.id %>">Add To My Shows</a>
+
+Status: <%= @show.status %><br />
+Airs on: <%= @show.airs_day %><br />
+Airs at: <%= @show.airs_time %><br />
+Content Rating: <%= @show.content_rating %><br />
+First Aired: <%= @show.first_aired %><br />
+Language: <%= @show.language %><br />
+Rating: <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
+
+<h3>Genres</h3>
+<% @show.genres.each do |genre| %>
+  - <a href="/genres/<%= genre.id %>"><%= genre.name %></a><br/ >
+<% end %>
+
+<h3>Overview</h3>
+<%= @show.overview %>
+
+
+<h3>Actors</h3>
+<% @show.actors.each do |actor| %>
+  - <a href="/actors/<%= actor.id %>"><%= actor.name %></a><br />
+<% end %>
+
+<h3>Episodes</h3>
+<% @show.seasons.each do |season| %>
+  <h4>Season <%= season %></h4>
+  <% @show.episodes_for_season(season).each do |episode| %>
+    - <%= episode.name %><br />
+  <% end %>
+<% end %>

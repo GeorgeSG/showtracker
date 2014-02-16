@@ -1,12 +1,23 @@
-<% @api_results.each do |show| %>
-  <a href="/shows/add/<%= show.id %>">
-  <div class="card small">
-    <% if show.poster %>
-      <img src="http://thetvdb.com/banners/_cache/<%= show.poster %>" />
+<% if @shows.empty? %>
+  <p>No shows found.</p>
+<% else %>
+  <% @shows.each do |group, shows| %>
+    <section>
+      <h6 class='list-header'><%= group %></h6>
+    <% shows.each do |show| %>
+      <a href="/shows/<%= show.id %>">
+        <div class="card small">
+          <% unless show.poster.empty? %>
+            <img src="http://thetvdb.com/banners/_cache/<%= show.poster %>" />
+          <% end %>
+          <div class="content">
+            <h1><%= show.name%></h1>
+          </div>
+        </div>
+      </a>
     <% end %>
-    <div class="content">
-      <h1><%= show.series_name %></h1>
-    </div>
-  </div>
-</a>
+    </section>
+  <% end %>
+
+  <%= partial :'partials/paging', locals: { url: @url } %>
 <% end %>

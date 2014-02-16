@@ -1,128 +1,18 @@
-<div class="card">
-  <img src="resources/cover.jpg" />
-  <div class="content long-title">
-    <h1>Why Don't You Just Switch Off Your Television Set and Go and Do Something Less Boring Instead?</h1>
+<% @shows.each do |show| %>
+<a href="/shows/<%= show.id %>" class="card">
+  <img src="http://thetvdb.com/banners/_cache/<%= show.poster %>" />
+  <div class="content <% if show.name.length > 15 %>long-title<% end %>">
+    <h1><%= show.name %></h1>
     <dl>
-      <dt>Genre:</dt>
-      <dd>Awesome</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
+      <dt>Rating:</dt>
+      <dd><%= show.rating %></dd>
+      <dt>Status:</dt>
+      <dd><%= show.status %></dd>
       <dt>Seasons:</dt>
-      <dd>3</dd>
-      <dt>Fans:</dt>
+      <dd><%= show.seasons_count %></dd>
+      <dt>Watched by:</dt>
       <dd>13134</dd>
     </dl>
   </div>
-</div>
-<div class="card">
-  <img src="resources/cover2.jpg" />
-  <div class="content">
-    <h1>Suits</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Awesome</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>3</dd>
-      <dt>Fans:</dt>
-      <dd>13134</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover3.jpg" />
-  <div class="content">
-    <h1>Arrow</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Comedy</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>8</dd>
-      <dt>Fans:</dt>
-      <dd>8</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover4.jpg" />
-  <div class="content">
-    <h1>Doctor Who</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Awesome</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>3</dd>
-      <dt>Fans:</dt>
-      <dd>13134</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover5.jpg" />
-  <div class="content">
-    <h1>Game Of Thrones</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Comedy</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>8</dd>
-      <dt>Fans:</dt>
-      <dd>8</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover6.jpg" />
-  <div class="content long-title">
-    <h1>How I Met Your Mother</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Awesome</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>3</dd>
-      <dt>Fans:</dt>
-      <dd>13134</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover7.jpg" />
-  <div class="content">
-    <h1>The Mentalist</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Comedy</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>8</dd>
-      <dt>Fans:</dt>
-      <dd>8</dd>
-    </dl>
-  </div>
-</div>
-<div class="card">
-  <img src="resources/cover8.jpg" />
-  <div class="content">
-    <h1>White Collar</h1>
-    <dl>
-      <dt>Genre:</dt>
-      <dd>Awesome</dd>
-      <dt>Runtime:</dt>
-      <dd>30 minutes</dd>
-      <dt>Seasons:</dt>
-      <dd>3</dd>
-      <dt>Fans:</dt>
-      <dd>13134</dd>
-    </dl>
-  </div>
-</div>
+</a>
+<% end %>

@@ -6,34 +6,64 @@ module ShowTracker
 
     get '/' do
       @title = 'Featured Shows'
-      @shows = Show.all
+      @shows = Show.order_by(Sequel.desc(:rating_count)).limit(12).all
       erb :'shows/index'
     end
 
-    get '/all' do
-      @title = 'All Shows'
-      @shows = Show.all
-      erb :'shows/all'
-    end
+    ['/all', '/all/:page', '/all/:page/', '/search', '/search/:page', '/search/:page/'].each do |route|
+      get route do
+        @query = params[:q] || ''
+        @page  = params[:page].to_i
+        @page  = 1 if @page < 1
 
-    get '/search' do
-      @title = 'Search Results'
+        ITEMS_PER_PAGE = 30
+        offset = ITEMS_PER_PAGE * (@page - 1)
 
-      @api_results = TVDB.series.search(params[:q]).map do |serie|
-        TVDB.series.find(serie.api_id)
+        criteria = Show.where("lower(name) like '%#{@query.downcase}%' AND NAME != ''")
+        @total_pages = criteria.count / ITEMS_PER_PAGE + 1
+
+        @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, offset).all
+        @shows = @shows.group_by { |show| show.name[0] }
+
+        if @total_pages < 5
+          @start_page = 1
+          @end_page = @total_pages
+        elsif @page <= 2
+          @start_page = 1
+          @end_page = 5
+        elsif @page >= (@total_pages - 2)
+          @start_page = @total_pages - 4
+          @end_page = @total_pages
+        else
+          @start_page = @page - 2
+          @end_page = @page + 2
+        end
+
+        if route.match /all/
+          @title = 'All Shows'
+          @url = NAMESPACE + '/all/'
+        else
+          @title = "Search Results (<em>#{criteria.count}</em>)"
+          @url = NAMESPACE + '/search/'
+        end
+
+        erb :'shows/search'
       end
-
-      erb :'shows/search'
-    end
-
-    get '/add/:series_id' do
-      series_id = params[:series_id]
-      serie     = TVDB.series.find(series_id)
-      p serie
     end
 
     get '/my-shows', auth: :logged do
       erb :'shows/my-shows'
+    end
+
+    get '/:show_id' do
+      @show = Show.where(id: params[:show_id]).first
+      redirect '/', error: 'There is no such show in the database' if @show.nil?
+
+      p @show.seasons
+
+
+      @title = @show.name
+      erb :'shows/view'
     end
   end
 end

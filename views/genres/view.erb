@@ -1,0 +1,4 @@
+Shows in that genre:<br />
+<% @genre.shows.each do |show| %>
+  - <a href='/shows/<%= show.id %>'><%= show.name %></a><br />
+<% end %>

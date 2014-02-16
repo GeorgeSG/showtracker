@@ -5,9 +5,12 @@ require './config/boot'
 #===============================================================================
 
 controllers = [
+  ShowTracker::ActorsController,
   ShowTracker::AuthController,
+  ShowTracker::GenresController,
   ShowTracker::MainController,
-  ShowTracker::ShowsController
+  ShowTracker::ShowsController,
+  ShowTracker::UsersController
 ]
 
 controllers.each do |controller|
