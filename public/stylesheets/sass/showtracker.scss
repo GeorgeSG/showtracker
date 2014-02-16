@@ -1,3 +1,9 @@
+@import "fonts.css";
+
+$darkblue: #003bad;
+$lightblue: #e0e6f1;
+$smallCardHeight: 25px;
+
 body {
   padding-top: 20px;
 }
@@ -52,60 +58,125 @@ h2 {
   border-color: transparent;
 }
 
-.card_list {
-  padding: 0;
-  list-style-type: none;
+.list_header {
+    display: block;
+    clear: both;
+    width: 100px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid $darkblue;
+    text-align: left;
+    font-size: 1.4em;
+}
 
-  li {
-    display: inline-block;
-    margin-left: -4px;
-    text-align: center;
+.card {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  width: 350px;
+  height: 160px;
+
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 15px 20px;
+  line-height: 1.5em;
+
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  font-family:'RobotoLight';
+  font-size: 1.1em;
+  cursor: pointer;
+
+  &:hover {
+    color: $darkblue;
+    outline: 5px solid #ddd;
   }
 
-  .card {
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .content {
     position: relative;
-    margin: 5px 5px 15px;
-    background: #fff;
-    cursor: pointer;
+    padding-left: 120px;
+    height: 100%;
 
-    &:hover > .options {
-      display: block;
+    &.long_title {
+      display: table;
+      height: 100%;
+
+      h1 {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      dl {
+        display: none;
+        top: 30px;
+      }
     }
 
-    &:hover > img {
-      border-color: #333;
-    }
-
-    > img {
-      max-height: 250px;
-      height: 250px;
-      border: 7px solid #eee;
-    }
-
-    > h3 {
-      width: 100%;
-      margin: 0;
-      padding: 11px 0 7px;
-      font-size: 15px;
+    h1 {
+      margin-top: 15px;
+      margin-bottom: 3px;
       text-align: center;
-      line-height: 20px;
-      color: #444;
+      line-height: 1.2em;
     }
 
-    > .options {
+    dl {
       position: absolute;
-      display: none;
-      bottom: 7px;
-      left: 7px;
-      width: 92%;
-      line-height: 30px;
+      top: 26px;
+      bottom: 6px;
+      width: 190px;
       text-align: left;
-      background-color: #333;
-    }
 
-    .btn:hover {
-      color: #fff;
+      dt {
+        float: left;
+        margin-right: 3px;
+      }
+
     }
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  h1 {
+    font-size: 20px;
   }
 }
 
+.card.small {
+  height: $smallCardHeight;
+  margin: 2px;
+  width: 323px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+
+  &:hover {
+    outline: none;
+  }
+
+  .content {
+    line-height: $smallCardHeight;
+    text-align: left;
+    padding-left: 40px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    h1 {
+      margin-top: 0;
+      font-size: 1em;
+      line-height: 1.9em;
+      text-align: left;
+    }
+  }
+}

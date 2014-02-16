@@ -1,178 +1,128 @@
-<h2>A</h2>
-<ul class="card_list">
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span> To Watchlist</a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-</ul>
-<h2>B</h2>
-<ul class="card_list">
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-</ul>
-<h2>C</h2>
-<ul class="card_list">
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-  <li>
-    <div class="card">
-      <h3>The Big Bang Theory</h3>
-      <img src="/img/house.jpg">
-      <div class="options">
-        <a href="/" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-      </div>
-    </div>
-  </li>
-</ul>
-<% unless @shows.nil? %>
-<ul>
-  <% @shows.each do |show| %>
-    <li><%= show.name %> - <%= show.seasons.count %> seasons</li>
-  <% end %>
-</ul>
-<% end %>
+<div class="card">
+  <img src="resources/cover.jpg" />
+  <div class="content long_title">
+    <h1>Why Don't You Just Switch Off Your Television Set and Go and Do Something Less Boring Instead?</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Awesome</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>3</dd>
+      <dt>Fans:</dt>
+      <dd>13134</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover2.jpg" />
+  <div class="content">
+    <h1>Suits</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Awesome</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>3</dd>
+      <dt>Fans:</dt>
+      <dd>13134</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover3.jpg" />
+  <div class="content">
+    <h1>Arrow</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Comedy</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>8</dd>
+      <dt>Fans:</dt>
+      <dd>8</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover4.jpg" />
+  <div class="content">
+    <h1>Doctor Who</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Awesome</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>3</dd>
+      <dt>Fans:</dt>
+      <dd>13134</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover5.jpg" />
+  <div class="content">
+    <h1>Game Of Thrones</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Comedy</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>8</dd>
+      <dt>Fans:</dt>
+      <dd>8</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover6.jpg" />
+  <div class="content long_title">
+    <h1>How I Met Your Mother</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Awesome</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>3</dd>
+      <dt>Fans:</dt>
+      <dd>13134</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover7.jpg" />
+  <div class="content">
+    <h1>The Mentalist</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Comedy</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>8</dd>
+      <dt>Fans:</dt>
+      <dd>8</dd>
+    </dl>
+  </div>
+</div>
+<div class="card">
+  <img src="resources/cover8.jpg" />
+  <div class="content">
+    <h1>White Collar</h1>
+    <dl>
+      <dt>Genre:</dt>
+      <dd>Awesome</dd>
+      <dt>Runtime:</dt>
+      <dd>30 minutes</dd>
+      <dt>Seasons:</dt>
+      <dd>3</dd>
+      <dt>Fans:</dt>
+      <dd>13134</dd>
+    </dl>
+  </div>
+</div>

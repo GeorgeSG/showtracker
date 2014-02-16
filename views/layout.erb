@@ -38,10 +38,10 @@
                   <li><a href="/shows/my-shows">My Shows (<%= current_user.shows.count %>)</a></lI>
                 <% end %>
               </ul>
-              <form class="navbar-form navbar-left" role="search">
+              <form class="navbar-form navbar-left" id="search_form" role="search" action="/shows/search">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <button type="button" class="btn btn-default">
+                  <input type="text" name="q" class="form-control" placeholder="Search">
+                  <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search"></span>
                   </button>
                 </div>
@@ -72,6 +72,7 @@
               </div>
             <% end %>
           <% end %>
+          <% unless @title.nil? %><h1><%= @title %></h1><% end %>
           <%= yield %>
         </div>
       </div>
