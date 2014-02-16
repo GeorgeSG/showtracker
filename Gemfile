@@ -16,17 +16,19 @@ gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'sass', '~> 3.2.14'
 
+gem 'the_tv_db'
+
 group :development do
   gem 'sqlite3', '~>1.3', require: false
   gem 'awesome_print',    require: false
   gem 'rerun',            require: false
   gem 'pry',              require: false
-  gem 'faker'
+  gem 'faker',            require: false
 end
 
 group :test do
   gem 'rspec'
-  gem 'rack-test', :require => "rack/test"
+  gem 'rack-test', require: 'rack/test'
 end
 
 group :production do

@@ -3,7 +3,7 @@
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <span class="glyphicon glyphicon-plus-sign"></span> Register
+        <span class="glyphicon glyphicon-plus-sign"></span> Sign Up
       </div>
       <div class="panel-body">
         <form class="form-horizontal col-md-10" method="post" action="/auth/signup">
@@ -46,7 +46,7 @@
           </div>
           <div class="form-group last">
             <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-primary btn-sm">Register</button>
+              <button type="submit" class="btn btn-primary btn-sm">Create Account</button>
             </div>
           </div>
         </form>
@@ -61,22 +61,22 @@
       <div class="panel-body">
         <form class="form-horizontal" method="post" action="/auth/login">
           <div class="form-group">
-            <label for="login_username" class="col-sm-3 control-label">Username</label>
+            <label for="username" class="col-sm-3 control-label">Username</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="login_username" placeholder="Username" required="required" />
+              <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
             </div>
           </div>
           <div class="form-group">
-            <label for="login_password" class="col-sm-3 control-label">Password</label>
+            <label for="password" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
-              <input type="password" class="form-control" name="login_password" placeholder="**********" required="required" />
+              <input type="password" class="form-control" name="password" placeholder="**********" required="required" />
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="remember" />
+                  <input type="checkbox" name="remember_me" />
                   Remember me
                 </label>
               </div>
@@ -84,7 +84,7 @@
           </div>
           <div class="form-group last">
             <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+              <button type="submit" class="btn btn-success btn-sm">Log In</button>
               <button type="reset" class="btn btn-default btn-sm">Reset</button>
             </div>
           </div>

@@ -11,6 +11,7 @@ module ShowTracker
     config_file 'config/config.yml'
 
     enable :sessions
+    set :session_secret, '51dd40e6847a1a6b31b75faf8f983721'
     set :environment, settings.environment
 
     set :views,         File.expand_path(settings.views_path)
@@ -42,10 +43,14 @@ module ShowTracker
         condition do
           unless send "#{type}?"
             flash[:info] = 'You need to be logged in to access this page.'
-            redirect "auth/login"
+            redirect "/auth/login"
           end
         end
       end
+    end
+
+    not_found do
+      erb "oops"
     end
   end
 end

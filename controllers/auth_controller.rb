@@ -5,12 +5,14 @@ module ShowTracker
     helpers UserHelpers
 
     get '/login' do
+      redirect '/user/profile' if logged?
+
       erb :'auth/login'
     end
 
     post '/login' do
-      username = params[:login_username]
-      password = params[:login_password]
+      username = params[:username]
+      password = params[:password]
 
       user = User.find(username: username)
 
@@ -28,6 +30,8 @@ module ShowTracker
     end
 
     get '/logout' do
+      redirect '/auth/login' unless logged?
+
       session[:uid] = nil
       redirect '/', success: 'You\'ve logged out successfully! Have a nice day!'
     end

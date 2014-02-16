@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Showtracker</title>
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="stylesheets/showtracker.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/stylesheets/showtracker.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/showtracker.js"></script>
   </head>
   <body>
     <div id="wrap">
@@ -34,7 +35,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/shows/">Shows</a></li>
                 <% if logged? %>
-                  <li><a href="/shows/my-shows">My Shows</a></lI>
+                  <li><a href="/shows/my-shows">My Shows (<%= current_user.shows.count %>)</a></lI>
                 <% end %>
               </ul>
               <form class="navbar-form navbar-left" role="search">
@@ -48,9 +49,9 @@
               <ul class="nav navbar-nav navbar-right">
                 <% if logged? %>
                   <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#"><span class="glyphicon glyphicon-cog"></span> My Profile</a></li>
+                      <li><a href="/user/preferences"><span class="glyphicon glyphicon-cog"></span> Preferences</a></li>
                       <li class="divider"></li>
                       <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     </ul>
@@ -65,7 +66,8 @@
         <div class="container-fluid">
           <% %w[error success warning info].each do |key| %>
             <% if flash[key] %>
-              <div class="alert alert-<%= key == 'error' ? 'danger' : key %>">
+              <div class="alert fade in alert-<%= key == 'error' ? 'danger' : key %>">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <%= flash[key] %>
               </div>
             <% end %>

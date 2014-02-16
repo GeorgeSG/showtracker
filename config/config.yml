@@ -12,6 +12,8 @@ views_path:      './views'
 public_path:     './public'
 migrations_path: './db/migrate'
 
+tvdb_api_key: '21D0254CFFE7F010'
+
 # Development specific settings
 development:
   sqlite_path: 'db/showtracker.db'

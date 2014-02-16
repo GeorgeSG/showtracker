@@ -11,6 +11,10 @@ body {
   margin-bottom: 20px;
 }
 
+.glyphicon {
+  top: 2px;
+}
+
 #wrap {
   min-height: 100%;
   height: auto;
@@ -29,6 +33,23 @@ h2 {
   display: block;
   width: 33%;
   border-bottom: 1px solid #000;
+}
+
+.btn-hover {
+  font-weight: normal;
+  color: #333333;
+  cursor: pointer;
+  background: none;
+  background-color: inherit;
+  border-color: transparent;
+}
+
+.btn-hover-alt {
+  font-weight: normal;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: inherit;
+  border-color: transparent;
 }
 
 .card_list {
