@@ -1,6 +1,6 @@
 <% @shows.each do |show| %>
 <a href="/shows/<%= show.id %>" class="card">
-  <img src="http://thetvdb.com/banners/_cache/<%= show.poster %>" />
+  <img src="http://thetvdb.com/banners/<%= show.poster %>" />
   <div class="content <% if show.name.length > 15 %>long-title<% end %>">
     <h1><%= show.name %></h1>
     <dl>

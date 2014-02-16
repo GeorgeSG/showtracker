@@ -51,10 +51,6 @@ module ShowTracker
       end
     end
 
-    get '/my-shows', auth: :logged do
-      erb :'shows/my-shows'
-    end
-
     get '/:show_id' do
       @show = Show.where(id: params[:show_id]).first
       redirect '/', error: 'There is no such show in the database' if @show.nil?

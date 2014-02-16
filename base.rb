@@ -53,7 +53,7 @@ module ShowTracker
         condition do
           unless send "#{type}?"
             flash[:info] = 'You need to be logged in to access this page.'
-            redirect "/auth/login"
+            redirect "/users/login"
           end
         end
       end

@@ -14,9 +14,7 @@ module ShowTracker
       erb :'users/my-shows'
     end
 
-    get '/add-show/:show_id' do
-      redirect '/login', info: 'You must login to add show to your shows!' unless logged?
-
+    get '/add-show/:show_id', auth: :logged do
       show = Show.where(id: params[:show_id]).first
       redirect '/', error: 'There is no such show in our database!' if show.nil?
 
@@ -28,9 +26,7 @@ module ShowTracker
       redirect '/users/my-shows', success: "You\'ve successfully added #{show.name} to your shows!"
     end
 
-    get '/remove-show/:show_id' do
-      redirect '/login', info: 'You must login to add show to your shows!' unless logged?
-
+    get '/remove-show/:show_id', auth: :logged do
       show = Show.where(id: params[:show_id]).first
       redirect '/', error: 'There is no such show in our database!' if show.nil?
 
