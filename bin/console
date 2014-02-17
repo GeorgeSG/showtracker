@@ -3,11 +3,19 @@
 require 'sequel'
 require 'awesome_print'
 require 'pry'
+require 'yaml'
 
-DB = Sequel.postgres('showtracker',
-                     host: 'localhost',
-                     user: 'showtracker',
-                     password: 'showtracker')
+settings = YAML.load(File.open('config/config.yml'))
+
+environment = settings['environment']
+env_settngs = settings[environment]
+
+db_host     = env_settngs['db_host']
+db_name     = env_settngs['db_name']
+db_user     = env_settngs['db_user']
+db_password = env_settngs['db_password']
+
+Sequel.postgres(db_name, host: db_host, user: db_user, password: db_password)
 
 Dir['./{models}/**/*.rb'].each { |file| require file }
 
