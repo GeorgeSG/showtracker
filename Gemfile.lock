@@ -62,6 +62,8 @@ GEM
       sinatra
     sinatra-redirect-with-flash (0.2.1)
       sinatra (>= 1.0.0)
+    sinatra-support (1.2.2)
+      sinatra (>= 1.0)
     slop (3.4.7)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -76,6 +78,7 @@ DEPENDENCIES
   awesome_print
   bcrypt-ruby (~> 3.1.2)
   faker
+  i18n
   pg
   pry
   rack-flash3 (~> 1.0.5)
@@ -88,4 +91,5 @@ DEPENDENCIES
   sinatra-contrib (~> 1.4.2)
   sinatra-partial
   sinatra-redirect-with-flash
+  sinatra-support (~> 1.2.2)
   thin

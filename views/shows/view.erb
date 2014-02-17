@@ -1,7 +1,12 @@
 <div class="pull-right">
 <% if logged? && current_user.has_show?(@show.id) %>
   <table class="table">
-    <thead><tr><th class="text-center">Season</th><th class="text-center">Episode</th></tr></thead>
+    <thead>
+      <tr>
+        <th class="text-center"><%= t 'general.season' %></th>
+        <th class="text-center"><%= t 'general.episode' %></th>
+      </tr>
+    </thead>
     <tbody>
       <tr>
         <td class="text-center">
@@ -17,37 +22,36 @@
       </tr>
     </tbody>
   </table>
-  <%= link_button "/users/remove-show/#{@show.id}", 'Remove form My Shows', :danger %>
+  <%= link_button "/users/remove-show/#{@show.id}", t('general.remove_from_shows'), :danger %>
 <% else %>
-  <%= link_button "/users/add-show/#{@show.id}", 'Add to My Shows', :success %>
+  <%= link_button "/users/add-show/#{@show.id}", t('general.add_to_shows'), :success %>
 <% end %>
 </div>
 
 <%= image "http://thetvdb.com/banners/#{@show.banner}" %><br />
 
-Status:          <%= @show.status %><br />
-Airs on:         <%= @show.airs_day %><br />
-Airs at:         <%= @show.airs_time %><br />
-Content Rating:  <%= @show.content_rating %><br />
-First Aired:     <%= @show.first_aired %><br />
-Language:        <%= @show.language %><br />
-Rating:          <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
+<%= t 'shows.status' %>:          <%= @show.status %><br />
+<%= t 'shows.airs_on' %>:         <%= @show.airs_day %><br />
+<%= t 'shows.airs_at' %>:         <%= @show.airs_time %><br />
+<%= t 'shows.content_rating' %>:  <%= @show.content_rating %><br />
+<%= t 'shows.first_aired' %>:     <%= @show.first_aired %><br />
+<%= t 'shows.rating' %>:          <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
 
-<h3>Genres</h3>
+<h3><%= t 'general.genres' %></h3>
 <% @show.genres.each do |genre| %>
   - <%= link_to "/genres/#{genre.id}", genre.name %><br/ >
 <% end %>
 
-<h3>Overview</h3>
+<h3><%= t 'shows.overview' %></h3>
 <%= @show.overview %>
 
 
-<h3>Actors</h3>
+<h3><%= t 'general.actors' %></h3>
 <% @show.actors.each do |actor| %>
   - <%= link_to "/actors/#{actor.id}", actor.name %><br />
 <% end %>
 
-<h3>Episodes</h3>
+<h3><%= t 'general.seasons' %></h3>
 <% @show.seasons.each do |season| %>
   <h4>Season <%= season %></h4>
   <% @show.episodes_for_season(season).each do |episode| %>

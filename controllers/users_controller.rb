@@ -7,30 +7,30 @@ module ShowTracker
 
     get '/my-shows', auth: :logged do
       @usershows = current_user.usershows.sort
-      @title = 'My Shows'
+      @title = t('general.my_shows')
       erb :'users/my-shows'
     end
 
     get '/add-show/:show_id', auth: :logged do
       show = Show.with_id params[:show_id]
-      redirect '/', error: 'There is no such show in our database!' if show.nil?
+      redirect '/', error: t('errors.no_such_show') if show.nil?
 
       Usershow.create(user_id: current_user.id, show_id: show.id)
 
-      flash[:success] = "You've successfully added #{show.name} to your shows!"
+      flash[:success] = t('successes.added_show', name: show.name)
       redirect '/users/my-shows'
     end
 
     get '/remove-show/:show_id', auth: :logged do
       show = Show.with_id params[:show_id]
-      redirect '/', error: 'There is no such show in our database!' if show.nil?
+      redirect '/', error: t('errors.no_such_show') if show.nil?
 
       usershow = Usershow.for_user_and_show current_user.id, show.id
-      redirect '/users/my-shows', error: "You don't have that show in your shows!" if usershow.nil?
+      redirect '/users/my-shows', error: t('errors.not_in_my_shows') if usershow.nil?
 
       usershow.destroy
 
-      redirect '/users/my-shows', success: "You\'ve successfully removed #{show.name} to your shows!"
+      redirect '/users/my-shows', success: t('successes.removed_show', name: show.name)
     end
 
     get '/decrement-episode/:usershow_id', auth: :logged do
@@ -43,8 +43,11 @@ module ShowTracker
       usershow.decrement_episode
       usershow.save
 
-      message = "You've successfully marked Season #{usershow.season} Episode #{usershow.episode + 1} of #{usershow.show.name} as unwatched!"
-      redirect '/users/my-shows', success: message
+      flash[:success] = t('successes.episode_unwatched', season: usershow.season,
+                                                        episode: usershow.episode + 1,
+                                                           show: usershow.show.name)
+
+      redirect '/users/my-shows'
     end
 
     get '/increment-episode/:usershow_id', auth: :logged do
@@ -52,7 +55,9 @@ module ShowTracker
       usershow.increment_episode
       usershow.save
 
-      flash[:success] = "You've successfully marked Season #{usershow.season} Episode #{usershow.episode} of #{usershow.show.name} as watched!"
+      flash[:success] = t('successes.episode_watched', season: usershow.season,
+                                                      episode: usershow.episode,
+                                                         show: usershow.show.name)
       redirect '/users/my-shows'
     end
 
@@ -60,13 +65,14 @@ module ShowTracker
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.season.nil? || usershow.season.zero?
-        redirect '/users/my-shows', error: 'You haven\'t watched any seasons yet!'
+        redirect '/users/my-shows', error: t('errors.no_seasons_yet')
       end
 
       usershow.decrement_season
       usershow.save
 
-      flash[:success] = "You've successfully marked Season #{usershow.season + 1} of #{usershow.show.name} as unwatched!"
+      flash[:success] = t('successes.season_unwatched', season: usershow.season + 1,
+                                                          show: usershow.show.name)
       redirect '/users/my-shows'
     end
 
@@ -75,7 +81,8 @@ module ShowTracker
       usershow.increment_season
       usershow.save
 
-      flash[:success] = "You've successfully marked Season #{usershow.season} of #{usershow.show.name} as watched!"
+      flash[:success] = t('successes.season_watched', season: usershow.season,
+                                                        show: usershow.show.name)
       redirect '/users/my-shows'
     end
 
@@ -91,21 +98,21 @@ module ShowTracker
       user = User.find(username: username)
 
       if user.nil?
-        redirect NAMESPACE + '/login', error: 'There is no such user in our database!'
+        redirect NAMESPACE + '/login', error: t('errors.no_such_user')
       end
 
       password = hash_password(password, user.salt)
       if password != user.password
-        redirect NAMESPACE + '/login', error: 'You\'ve entered an incorrect password!'
+        redirect NAMESPACE + '/login', error: t('errors.incorrect_password')
       end
 
       session[:uid] = user.id
-      redirect '/', success: "Welcome, #{user.username}! Enjoy your stay!"
+      redirect '/', success: t('successes.welcome', name: user.username)
     end
 
     get '/logout', auth: :logged do
       session[:uid] = nil
-      redirect '/', success: 'You\'ve logged out successfully! Have a nice day!'
+      redirect '/', success: t('successes.logout')
     end
 
     post '/signup' do
@@ -126,7 +133,7 @@ module ShowTracker
                          first_name: first_name,
                          last_name: last_name)
 
-      flash[:success] = 'You have registered succesfully!'
+      flash[:success] = t('successes.register')
       redirect NAMESPACE + '/login'
     end
   end

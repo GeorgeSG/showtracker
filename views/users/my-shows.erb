@@ -1,15 +1,15 @@
 <% if @usershows.empty? %>
-  <p>You have no shows yet.</p>
+  <p><%= t 'users.my_shows.no_shows_yet' %></p>
 <% else%>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Show Name</th>
-        <th width="100px" class="text-center">Season</th>
-        <th width="100px" class="text-center">Episode</th>
-        <th width="150px" class="text-center">Status</th>
-        <th>Options</th>
+        <th><%= t 'general.show_name' %></th>
+        <th width="100px" class="text-center"><%= t 'general.season' %></th>
+        <th width="100px" class="text-center"><%= t 'general.episode' %></th>
+        <th width="150px" class="text-center"><%= t 'shows.status' %></th>
+        <th><%= t 'general.options' %></th>
       </tr>
     </thead>
     <tbody>
@@ -30,7 +30,7 @@
         </td>
         <td class="text-center"><%= usershow.show.status %></td>
         <td>
-          <%= link_button "/users/remove-show/#{usershow.show.id}", 'Remove', :danger, :xs %>
+          <%= link_button "/users/remove-show/#{usershow.show.id}", t('general.remove'), :danger, :xs %>
         </td>
       </tr>
     <% end %>

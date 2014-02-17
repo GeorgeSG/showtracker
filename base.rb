@@ -6,9 +6,9 @@ module ShowTracker
     register Sinatra::Partial
     register Sinatra::ConfigFile
     register Sinatra::MultiRoute
+    register Sinatra::I18nSupport
 
     helpers Sinatra::RedirectWithFlash
-
     config_file 'config/config.yml'
 
     enable :sessions
@@ -18,6 +18,8 @@ module ShowTracker
     set :views,         File.expand_path(settings.views_path)
     set :public_folder, File.expand_path(settings.public_path)
     set :partial_template_engine, :erb
+
+    load_locales settings.locales_path
 
     Bundler.require settings.environment
 

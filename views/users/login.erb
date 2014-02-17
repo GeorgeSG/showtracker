@@ -3,50 +3,84 @@
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= glyphicon 'plus-sign' %> Sign Up
+        <%= glyphicon 'plus-sign' %> <%= t 'general.sign_up' %>
       </div>
       <div class="panel-body">
         <form class="form-horizontal col-md-10" method="post" action="/users/signup">
           <div class="form-group">
-            <label for="username" class="col-sm-5 control-label">Username*</label>
+            <label for="username" class="col-sm-5 control-label">
+              <%= t 'users.username' %>*
+            </label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="<%= t 'users.username' %>"
+                required="required" />
             </div>
           </div>
           <div class="form-group">
-            <label for="password_confirmed" class="col-sm-5 control-label">Password*</label>
+            <label for="password_confirmed" class="col-sm-5 control-label">
+              <%= t 'users.password' %>*
+            </label>
             <div class="col-sm-7">
-              <input type="password" class="form-control" name="password" placeholder="**********" required="required" />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="**********"
+                required="required" />
             </div>
           </div>
           <div class="form-group">
-            <label for="password" class="col-sm-5 control-label">Confirm Password*</label>
+            <label for="password" class="col-sm-5 control-label">
+              <%= t 'users.confirm_password' %>*
+            </label>
             <div class="col-sm-7">
-              <input type="password" class="form-control" name="password_confirmed" placeholder="**********" required="required" />
+              <input
+                type="password"
+                class="form-control"
+                name="password_confirmed"
+                placeholder="**********"
+                required="required" />
             </div>
           </div>
           <div class="form-group">
-            <label for="email" class="col-sm-5 control-label">Email*</label>
+            <label for="email" class="col-sm-5 control-label">
+              <%= t 'users.email' %>*
+            </label>
             <div class="col-sm-7">
-              <input type="email" class="form-control" name="email" placeholder="john@doe.com" required="required" />
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="john@doe.com"
+                required="required" />
             </div>
           </div>
           <hr />
           <div class="form-group">
-            <label for="first_name" class="col-sm-5 control-label">First Name</label>
+            <label for="first_name" class="col-sm-5 control-label">
+              <%= t 'users.first_name' %>
+            </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" name="first_name" placeholder="John" />
             </div>
           </div>
           <div class="form-group">
-            <label for="last_name" class="col-sm-5 control-label">Last Name</label>
+            <label for="last_name" class="col-sm-5 control-label">
+              <%= t 'users.last_name' %>
+            </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" name="last_name" placeholder="Doe" />
             </div>
           </div>
           <div class="form-group last">
             <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-primary btn-sm">Create Account</button>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <%= t 'users.create_account' %>
+              </button>
             </div>
           </div>
         </form>
@@ -56,20 +90,34 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= glyphicon 'lock' %> Login
+        <%= glyphicon 'lock' %> <%= t 'general.login' %>
       </div>
       <div class="panel-body">
         <form class="form-horizontal" method="post" action="/users/login">
           <div class="form-group">
-            <label for="username" class="col-sm-3 control-label">Username</label>
+            <label for="username" class="col-sm-3 control-label">
+              <%= t 'users.username' %>
+            </label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="<%= t 'users.username' %>"
+                required="required" />
             </div>
           </div>
           <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">Password</label>
+            <label for="password" class="col-sm-3 control-label">
+              <%= t 'users.password' %>
+            </label>
             <div class="col-sm-9">
-              <input type="password" class="form-control" name="password" placeholder="**********" required="required" />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="**********"
+                required="required" />
             </div>
           </div>
           <div class="form-group">
@@ -77,21 +125,25 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox" name="remember_me" />
-                  Remember me
+                  <%= t 'users.remember_me' %>
                 </label>
               </div>
             </div>
           </div>
           <div class="form-group last">
             <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-success btn-sm">Log In</button>
-              <button type="reset" class="btn btn-default btn-sm">Reset</button>
+              <button type="submit" class="btn btn-success btn-sm">
+                <%= t 'general.login' %>
+              </button>
+              <button type="reset" class="btn btn-default btn-sm">
+                <%= t 'general.reset' %>
+              </button>
             </div>
           </div>
         </form>
       </div>
       <div class="panel-footer">
-        Not Registred? Register now!
+        <%= t 'users.not_registered_message' %>
       </div>
     </div>
   </div>

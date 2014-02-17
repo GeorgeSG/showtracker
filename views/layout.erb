@@ -23,26 +23,30 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"><%= t 'layout.toggle_navigation' %></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">ShowTracker.eu</a>
+              <a class="navbar-brand" href="/"><%= t 'layout.brand' %></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/shows">Shows</a></li>
+                <li><a href="/"><%= t 'general.home' %></a></li>
+                <li><a href="/shows"><%= t 'general.shows' %></a></li>
                 <% if logged? %>
-                  <li><a href="/users/my-shows">My Shows <span class="label label-primary"><%= current_user.shows.count %></span></a></lI>
+                  <li>
+                    <a href="/users/my-shows"><%= t 'general.my_shows' %>
+                      <span class="label label-primary"><%= current_user.shows.count %></span>
+                    </a>
+                  </lI>
                 <% end %>
               </ul>
               <form class="navbar-form navbar-left" id="search_form" role="search" action="/shows/search">
                 <div class="form-group">
-                  <input type="text" name="q" class="form-control" placeholder="Search">
+                  <input type="text" name="q" class="form-control" placeholder="<%= t 'general.search' %>">
                   <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
+                    <%= glyphicon 'search' %>
                   </button>
                 </div>
               </form>
@@ -51,13 +55,13 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to 'users/preferences', "#{glyphicon('cog')} Preferences" %></li>
+                      <li><%= link_to '/users/preferences', "#{glyphicon('cog')} #{t 'general.preferences'}" %></li>
                       <li class="divider"></li>
-                      <li><%= link_to 'users/logout', "#{glyphicon('off')} Logout" %></li>
+                      <li><%= link_to '/users/logout', "#{glyphicon('off')} #{t 'general.logout'}" %></li>
                     </ul>
                   </li>
                 <% else %>
-                  <li><%= link_to 'users/login', 'Login' %></li>
+                  <li><%= link_to '/users/login', t('general.login') %></li>
                 <% end %>
               </ul>
             </div>
@@ -84,7 +88,7 @@
     </div>
     <div id="footer">
       <div class="container">
-        <p class="text-muted">All rights reserved</p>
+        <p class="text-muted"><%= t 'layout.copyright' %></p>
       </div>
     </div>
   </body>

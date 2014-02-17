@@ -7,9 +7,9 @@ module ShowTracker
 
     get '/:genre_id' do
       @genre = Genre.with_id params[:genre_id]
-      redirect '/', error: 'There is no such genre in our database' if @genre.nil?
+      redirect '/', error: t('errors.no_such_genre') if @genre.nil?
 
-      @title = @genre.name + ' :: Genre'
+      @title = @genre.name
       erb :'genres/view'
     end
   end

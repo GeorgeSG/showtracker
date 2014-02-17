@@ -10,8 +10,8 @@ module ShowTracker
       User.find(id: session[:uid])
     end
 
-    def hash_pasword(password, salt)
-      BCrypt::Engine.hash_secret(password, user.salt)
+    def hash_password(password, salt)
+      BCrypt::Engine.hash_secret(password, salt)
     end
 
     def hash_salt

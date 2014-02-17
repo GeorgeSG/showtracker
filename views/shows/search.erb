@@ -1,8 +1,8 @@
 <% if @shows.empty? %>
-  <p>No shows found.</p>
+  <p><%= t 'shows.search.no_shows_found' %></p>
 <% else %>
   <div class="btn-group pull-right">
-    <a href="/shows?q=<%= @query %>" class="btn btn-default btn-primary"><%= glyphicon 'th-large' %></a>
+    <a href="/shows/?q=<%= @query %>" class="btn btn-default btn-primary"><%= glyphicon 'th-large' %></a>
     <a class="btn btn-default btn-primary active"><%= glyphicon 'th-list' %></a>
   </div>
   <% @shows.each do |group, shows| %>

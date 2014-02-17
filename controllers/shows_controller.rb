@@ -11,7 +11,7 @@ module ShowTracker
 
         @query = params[:q] || ''
 
-        criteria = Show.where("lower(name) like '%#{@query.downcase}%' AND NAME != ''")
+        criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
         initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
         @shows = criteria.order_by(Sequel.desc(:rating_count))
@@ -19,7 +19,7 @@ module ShowTracker
 
         @url = NAMESPACE + '/'
 
-        @title = 'Shows'
+        @title = t('general.shows')
         erb :'shows/index'
       end
 
@@ -28,17 +28,17 @@ module ShowTracker
 
         @query = params[:q] || ''
 
-        criteria = Show.where("lower(name) like '%#{@query.downcase}%' AND NAME != ''")
+        criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
         initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
         @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, @offset).all
         @shows = @shows.group_by { |show| show.name[0] }
 
         if request.path_info.match /list/
-          @title = 'Shows'
+          @title = t('general.shows')
           @url = NAMESPACE + '/list/'
         else
-          @title = "Search Results"
+          @title = t('general.results')
           @subtitle = "(#{criteria.count})"
           @url = NAMESPACE + '/search/'
         end
@@ -47,8 +47,8 @@ module ShowTracker
       end
 
     get '/:show_id' do
-      @show = Show.where(id: params[:show_id]).first
-      redirect '/', error: 'There is no such show in the database' if @show.nil?
+      @show = Show.with_id params[:show_id]
+      redirect '/', error: t('errors.no_such_show') if @show.nil?
 
       if logged?
         @usershow = Usershow.for_user_and_show(current_user.id, @show.id)

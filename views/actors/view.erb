@@ -1,4 +1,4 @@
-Shows that actor stars in:<br />
+<%= t 'actors.view.actor_shows' %><br />
 <% @actor.shows.each do |show| %>
   - <%= link_to "/shows/#{show.id}", show.name %><br />
 <% end %>
