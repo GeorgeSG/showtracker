@@ -6,14 +6,14 @@ $(function() {
 
     // Show additional info for shows with long titles
     $cards.mouseenter(function() {
-        var $this = $cards.eq($(this).index() - 1);
+        var $this = $cards.eq($(this).index());
 
         if ($this.has(".long-title").length) {
             $this.find("h1").fadeOut(100);
             $this.find("dl").delay(100).fadeIn(100);
         }
     }).mouseleave(function() {
-        var $this = $cards.eq($(this).index() - 1);
+        var $this = $cards.eq($(this).index());
 
         if ($this.has(".long-title").length) {
             $this.find("dl").fadeOut(100)

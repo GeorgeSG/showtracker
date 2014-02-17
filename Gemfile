@@ -4,7 +4,7 @@ ruby '2.1.0'
 
 gem 'thin', require: false
 
-gem 'sinatra',         '~> 1.4.4', require: 'sinatra/base'
+gem 'sinatra',         '~> 1.4.4', require: ['sinatra/base', 'sinatra/multi_route']
 gem 'sinatra-contrib', '~> 1.4.2'
 gem 'sinatra-partial',             require: 'sinatra/partial'
 
@@ -16,8 +16,6 @@ gem 'sequel', '~> 4.7.0'
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'sass', '~> 3.2.14'
-
-gem 'the_tv_db'
 
 group :development do
   gem 'awesome_print',    require: false

@@ -25,13 +25,13 @@
 
 <%= image "http://thetvdb.com/banners/#{@show.banner}" %><br />
 
-Status: <%= @show.status %><br />
-Airs on: <%= @show.airs_day %><br />
-Airs at: <%= @show.airs_time %><br />
-Content Rating: <%= @show.content_rating %><br />
-First Aired: <%= @show.first_aired %><br />
-Language: <%= @show.language %><br />
-Rating: <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
+Status:          <%= @show.status %><br />
+Airs on:         <%= @show.airs_day %><br />
+Airs at:         <%= @show.airs_time %><br />
+Content Rating:  <%= @show.content_rating %><br />
+First Aired:     <%= @show.first_aired %><br />
+Language:        <%= @show.language %><br />
+Rating:          <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
 
 <h3>Genres</h3>
 <% @show.genres.each do |genre| %>

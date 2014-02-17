@@ -5,6 +5,7 @@ module ShowTracker
 
     register Sinatra::Partial
     register Sinatra::ConfigFile
+    register Sinatra::MultiRoute
 
     helpers Sinatra::RedirectWithFlash
 

@@ -1,18 +1,26 @@
-<% @shows.each do |show| %>
-<a href="/shows/<%= show.id %>" class="card">
-  <%= image "http://thetvdb.com/banners/#{show.poster}" %>
-  <div class="content <% if show.name.length > 15 %>long-title<% end %>">
-    <h1><%= show.name %></h1>
-    <dl>
-      <dt>Rating:</dt>
-      <dd><%= show.rating %></dd>
-      <dt>Status:</dt>
-      <dd><%= show.status %></dd>
-      <dt>Seasons:</dt>
-      <dd><%= show.seasons_count %></dd>
-      <dt>Watched by:</dt>
-      <dd>13134</dd>
-    </dl>
-  </div>
-</a>
-<% end %>
+<div class="btn-group pull-right">
+  <a class="btn btn-default btn-primary active"><%= glyphicon 'th-large' %></a>
+  <a href="/shows/list/page/<%= @page %>?q=<%= @query %>" class="btn btn-default btn-primary"><%= glyphicon 'th-list' %></a>
+</div>
+<div class="clearfix"></div>
+<div class="card_list">
+  <% @shows.each do |show| %>
+  <a href="/shows/<%= show.id %>" class="card">
+    <%= image "http://thetvdb.com/banners/#{show.poster}" %>
+    <div class="content <% if show.name.length > 15 %>long-title<% end %>">
+      <h1><%= show.name %></h1>
+      <dl>
+        <dt>Rating:</dt>
+        <dd><%= show.rating %></dd>
+        <dt>Status:</dt>
+        <dd><%= show.status %></dd>
+        <dt>Seasons:</dt>
+        <dd><%= show.seasons_count %></dd>
+        <dt>Watched by:</dt>
+        <dd>13134</dd>
+      </dl>
+    </div>
+  </a>
+  <% end %>
+  <%= partial :'partials/paging', locals: { url: @url } %>
+</div>

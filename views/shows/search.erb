@@ -1,6 +1,10 @@
 <% if @shows.empty? %>
   <p>No shows found.</p>
 <% else %>
+  <div class="btn-group pull-right">
+    <a href="/shows/page/<%= @page %>?q=<%= @query %>" class="btn btn-default btn-primary"><%= glyphicon 'th-large' %></a>
+    <a class="btn btn-default btn-primary active"><%= glyphicon 'th-list' %></a>
+  </div>
   <% @shows.each do |group, shows| %>
     <section>
       <%= h 6, group, class: 'list-header' %>
@@ -10,9 +14,7 @@
           <% unless show.poster.empty? %>
             <%= image "http://thetvdb.com/banners/#{show.poster}" %>
           <% end %>
-          <div class="content">
-            <%= h 1, show.name %>
-          </div>
+          <div class="content"><%= h 1, show.name %></div>
         </div>
       </a>
     <% end %>

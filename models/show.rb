@@ -21,4 +21,10 @@ class Show < Sequel::Model
   def episodes_for_season(number)
     episodes.group_by(&:season_number)[number]
   end
+
+  class << self
+    def with_id(show_id)
+      Show.where(id: show_id).first
+    end
+  end
 end

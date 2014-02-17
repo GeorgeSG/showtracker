@@ -7,10 +7,7 @@ module ShowTracker
     helpers HTMLHelpers
 
     get '/my-shows', auth: :logged do
-      @usershows = current_user.usershows.sort do |first, second|
-        first.show.name <=> second.show.name
-      end
-
+      @usershows = current_user.usershows.sort
       @title = 'My Shows'
       erb :'users/my-shows'
     end
@@ -19,100 +16,72 @@ module ShowTracker
       show = Show.where(id: params[:show_id]).first
       redirect '/', error: 'There is no such show in our database!' if show.nil?
 
-      usershow = Usershow.new
-      usershow.user = current_user
-      usershow.show = show
-      usershow.save
+      Usershow.create(user_id: current_user.id, show_id: show.id)
 
-      redirect '/users/my-shows', success: "You\'ve successfully added #{show.name} to your shows!"
+      flash[:success] = "You've successfully added #{show.name} to your shows!"
+      redirect '/users/my-shows'
     end
 
     get '/remove-show/:show_id', auth: :logged do
-      show = Show.where(id: params[:show_id]).first
+      show = Show.with_id params[:show_id]
       redirect '/', error: 'There is no such show in our database!' if show.nil?
 
-      usershow = Usershow.where(user_id: current_user.id, show_id: show.id).first
+      usershow = Usershow.for_user_and_show current_user.id, show.id
       redirect '/users/my-shows', error: "You don't have that show in your shows!" if usershow.nil?
 
-      usershow.delete
+      usershow.destroy
 
       redirect '/users/my-shows', success: "You\'ve successfully removed #{show.name} to your shows!"
     end
 
     get '/decrement-episode/:usershow_id' do
-      usershow = Usershow.where(id: params[:usershow_id]).first
-
-      usershow.season = 1 if usershow.season.nil? || usershow.season.zero?
+      usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.episode.zero? || usershow.episode.nil?
         redirect '/users/my-shows', error: 'You haven\'t watched any episodes yet!'
       end
-      old_episode = usershow.episode || 1
 
-      unless usershow.episode.nil? or usershow.episode.zero?
-        usershow.episode -= 1
-        usershow.save
-      end
+      usershow.decrement_episode
+      usershow.save
 
-      message = "You've successfully marked Season #{usershow.season} Episode #{old_episode} of #{usershow.show.name} as unwatched!"
+      message = "You've successfully marked Season #{usershow.season} Episode #{usershow.episode + 1} of #{usershow.show.name} as unwatched!"
       redirect '/users/my-shows', success: message
     end
 
     get '/increment-episode/:usershow_id' do
-      usershow = Usershow.where(id: params[:usershow_id]).first
-
-      usershow.season = 1 if usershow.season.nil? || usershow.season.zero?
-
-      if usershow.episode.nil?
-        usershow.episode = 1
-      else
-        usershow.episode += 1
-      end
+      usershow = Usershow.with_id params[:usershow_id]
+      usershow.increment_episode
       usershow.save
 
-      message = "You've successfully marked Season #{usershow.season} Episode #{usershow.episode} of #{usershow.show.name} as watched!"
-      redirect '/users/my-shows', success: message
+      flash[:success] = "You've successfully marked Season #{usershow.season} Episode #{usershow.episode} of #{usershow.show.name} as watched!"
+      redirect '/users/my-shows'
     end
 
     get '/decrement-season/:usershow_id' do
-      usershow = Usershow.where(id: params[:usershow_id]).first
+      usershow = Usershow.with_id params[:usershow_id]
 
-      if usershow.season.zero? || usershow.season.nil?
+      if usershow.season.nil? || usershow.season.zero?
         redirect '/users/my-shows', error: 'You haven\'t watched any seasons yet!'
       end
 
-      old_season = usershow.season || 1
+      usershow.decrement_season
+      usershow.save
 
-      usershow.episode = 0
-
-      unless usershow.season.nil? or usershow.season.zero?
-        usershow.season -= 1
-        usershow.save
-      end
-
-      message = "You've successfully marked Season #{old_season} of #{usershow.show.name} as unwatched!"
-      redirect '/users/my-shows', success: message
+      flash[:success] = "You've successfully marked Season #{usershow.season + 1} of #{usershow.show.name} as unwatched!"
+      redirect '/users/my-shows'
     end
 
     get '/increment-season/:usershow_id' do
-      usershow = Usershow.where(id: params[:usershow_id]).first
-
-      usershow.episode = 0
-
-      if usershow.season.nil?
-        usershow.season = 1
-      else
-        usershow.season += 1
-      end
+      usershow = Usershow.with_id params[:usershow_id]
+      usershow.increment_season
       usershow.save
 
-      message = "You've successfully marked Season #{usershow.season} of #{usershow.show.name} as watched!"
-      redirect '/users/my-shows', success: message
+      flash[:success] = "You've successfully marked Season #{usershow.season} of #{usershow.show.name} as watched!"
+      redirect '/users/my-shows'
     end
 
     get '/login' do
       redirect '/user/profile' if logged?
-
       erb :'users/login'
     end
 
@@ -126,7 +95,7 @@ module ShowTracker
         redirect NAMESPACE + '/login', error: 'There is no such user in our database!'
       end
 
-      password = BCrypt::Engine.hash_secret(password, user.salt)
+      password = hash_password(password, user.salt)
       if password != user.password
         redirect NAMESPACE + '/login', error: 'You\'ve entered an incorrect password!'
       end
@@ -150,8 +119,8 @@ module ShowTracker
       first_name       = params[:first_name]
       last_name        = params[:last_name]
 
-      password_salt = BCrypt::Engine.generate_salt
-      password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+      password_salt = hash_salt
+      password_hash = hash_pasword(params[:password], password_salt)
 
       user = User.create(username: username,
                          password: password_hash,
