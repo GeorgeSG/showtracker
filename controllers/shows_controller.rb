@@ -3,6 +3,7 @@ module ShowTracker
     NAMESPACE = '/shows'.freeze
 
     helpers UserHelpers
+    helpers HTMLHelpers
 
     get '/' do
       @title = 'Featured Shows'

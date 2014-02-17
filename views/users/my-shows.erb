@@ -1,6 +1,7 @@
 <% if @usershows.empty? %>
   <p>You have no shows yet.</p>
 <% else%>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,27 +15,23 @@
     <tbody>
     <% @usershows.each do |usershow| %>
       <tr>
-        <td><a href="/shows/<%= usershow.show.id %>"><%= usershow.show.name %></a></td>
-        <td class="text-center">
-          <a href="/users/increment-season/<%= usershow.id %>" class="btn btn-success btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-up">
-          </a>
-          <span style='padding: 0 5px'><%= usershow.season || 0%></span>
-          <a href="/users/decrement-season/<%= usershow.id %>" class="btn btn-danger btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-down">
-          </a>
+        <td>
+          <%= link_to "/shows/#{usershow.show.id}", usershow.show.name %>
         </td>
         <td class="text-center">
-          <a href="/users/increment-episode/<%= usershow.id %>" class="btn btn-success btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-up">
-          </a>
+          <%= link_button "/users/increment-season/#{usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
+          <span style='padding: 0 5px'><%= usershow.season || 0%></span>
+          <%= link_button "/users/decrement-season/#{usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
+        </td>
+        <td class="text-center">
+          <%= link_button "/users/increment-episode/#{usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
           <span style='padding: 0 5px'><%= usershow.episode || 0%></span>
-          <a href="/users/decrement-episode/<%= usershow.id %>" class="btn btn-danger btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-down">
-          </a>
+          <%= link_button "/users/decrement-episode/#{usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
         <td class="text-center"><%= usershow.show.status %></td>
-        <td><a href="/users/remove-show/<%= usershow.show.id %>" class="btn btn-danger btn-xs">Remove</a></td>
+        <td>
+          <%= link_button "/users/remove-show/#{usershow.show.id}", 'Remove', :danger, :xs %>
+        </td>
       </tr>
     <% end %>
     </tbody>

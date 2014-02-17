@@ -4,6 +4,7 @@ module ShowTracker
     NAMESPACE = '/users'.freeze
 
     helpers UserHelpers
+    helpers HTMLHelpers
 
     get '/my-shows', auth: :logged do
       @usershows = current_user.usershows.sort do |first, second|

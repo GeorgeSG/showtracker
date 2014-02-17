@@ -3,6 +3,7 @@ module ShowTracker
     NAMESPACE = '/actors'.freeze
 
     helpers UserHelpers
+    helpers HTMLHelpers
 
     get '/:actor_id' do
       @actor = Actor.where(id: params[:actor_id]).first

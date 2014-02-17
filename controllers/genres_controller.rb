@@ -3,6 +3,7 @@ module ShowTracker
     NAMESPACE = '/genres'.freeze
 
     helpers UserHelpers
+    helpers HTMLHelpers
 
     get '/:genre_id' do
       @genre = Genre.where(id: params[:genre_id]).first

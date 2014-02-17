@@ -5,34 +5,25 @@
     <tbody>
       <tr>
         <td class="text-center">
-          <a href="/users/increment-season/<%= @usershow.id %>" class="btn btn-success btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-up">
-          </a>
+          <%= link_button "/users/increment-season/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
           <span style='padding: 0 5px'><%= @usershow.season || 0 %></span>
-          <a href="/users/decrement-season/<%= @usershow.id %>" class="btn btn-danger btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-down">
-          </a>
+          <%= link_button "/users/decrement-season/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
         <td class="text-center">
-          <a href="/users/increment-episode/<%= @usershow.id %>" class="btn btn-success btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-up">
-          </a>
+          <%= link_button "/users/increment-episode/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
           <span style='padding: 0 5px'><%= @usershow.episode || 0 %></span>
-          <a href="/users/decrement-episode/<%= @usershow.id %>" class="btn btn-danger btn-hover btn-xs">
-            <span class="glyphicon glyphicon-chevron-down">
-          </a>
+          <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
       </tr>
     </tbody>
   </table>
-  <a class="btn btn-danger" href="/users/remove-show/<%= @show.id %>">Remove from My Shows</a>
+  <%= link_button "/users/remove-show/#{@show.id}", 'Remove form My Shows', :danger %>
 <% else %>
-  <a class="btn btn-success" href="/users/add-show/<%= @show.id %>">Add to My Shows</a>
+  <%= link_button "/users/add-show/#{@show.id}", 'Add to My Shows', :success %>
 <% end %>
 </div>
 
-<img src="http://thetvdb.com/banners/<%= @show.banner %>" /><br />
-
+<%= tag 'img', src: "http://thetvdb.com/banners/#{@show.banner}" %><br />
 
 Status: <%= @show.status %><br />
 Airs on: <%= @show.airs_day %><br />
@@ -44,7 +35,7 @@ Rating: <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
 
 <h3>Genres</h3>
 <% @show.genres.each do |genre| %>
-  - <a href="/genres/<%= genre.id %>"><%= genre.name %></a><br/ >
+  - <%= link_to "/genres/#{genre.id}", genre.name %><br/ >
 <% end %>
 
 <h3>Overview</h3>
@@ -53,7 +44,7 @@ Rating: <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
 
 <h3>Actors</h3>
 <% @show.actors.each do |actor| %>
-  - <a href="/actors/<%= actor.id %>"><%= actor.name %></a><br />
+  - <%= link_to "/actors/#{actor.id}", actor.name %><br />
 <% end %>
 
 <h3>Episodes</h3>

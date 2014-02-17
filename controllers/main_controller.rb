@@ -3,6 +3,7 @@ module ShowTracker
     NAMESPACE = '/'.freeze
 
     helpers UserHelpers
+    helpers HTMLHelpers
 
     get '/' do
       erb :'home/index'
