@@ -19,13 +19,14 @@ gem 'sequel', '~> 4.7.0'
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'json'
-gem 'sass', '~> 3.2.14'
+gem 'sass', '~> 3.2.14', require: 'sass/plugin/rack'
 
 group :development do
-  gem 'awesome_print',    require: false
-  gem 'rerun',            require: false
-  gem 'pry',              require: false
-  gem 'faker',            require: false
+  gem 'awesome_print', require: false
+  gem 'rerun',         require: false
+  gem 'pry',           require: false
+  gem 'faker',         require: false
+  gem 'rubocop',       require: false
 end
 
 group :test do

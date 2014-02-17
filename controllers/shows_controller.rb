@@ -6,45 +6,45 @@ module ShowTracker
     helpers HTMLHelpers
     helpers PagingHelpers
 
-      get '/', '/page/:page/?' do
-        ITEMS_PER_PAGE = 12
+    get '/', '/page/:page/?' do
+      ITEMS_PER_PAGE = 12
 
-        @query = params[:q] || ''
+      @query = params[:q] || ''
 
-        criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
-        initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
+      criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
+      initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
-        @shows = criteria.order_by(Sequel.desc(:rating_count))
-        @shows = @shows.limit(ITEMS_PER_PAGE, @offset).all
+      @shows = criteria.order_by(Sequel.desc(:rating_count))
+      @shows = @shows.limit(ITEMS_PER_PAGE, @offset).all
 
-        @url = NAMESPACE + '/'
+      @url = NAMESPACE + '/'
 
+      @title = t('general.shows')
+      erb :'shows/index'
+    end
+
+    get '/list', '/list/page/:page/?', '/search', '/search/page/:page/?' do
+      ITEMS_PER_PAGE = 30
+
+      @query = params[:q] || ''
+
+      criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
+      initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
+
+      @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, @offset).all
+      @shows = @shows.group_by { |show| show.name[0] }
+
+      if request.path_info.match(/list/)
         @title = t('general.shows')
-        erb :'shows/index'
+        @url = NAMESPACE + '/list/'
+      else
+        @title = t('general.results')
+        @subtitle = "(#{criteria.count})"
+        @url = NAMESPACE + '/search/'
       end
 
-      get '/list', '/list/page/:page/?', '/search', '/search/page/:page/?' do
-        ITEMS_PER_PAGE = 30
-
-        @query = params[:q] || ''
-
-        criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
-        initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
-
-        @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, @offset).all
-        @shows = @shows.group_by { |show| show.name[0] }
-
-        if request.path_info.match /list/
-          @title = t('general.shows')
-          @url = NAMESPACE + '/list/'
-        else
-          @title = t('general.results')
-          @subtitle = "(#{criteria.count})"
-          @url = NAMESPACE + '/search/'
-        end
-
-        erb :'shows/search'
-      end
+      erb :'shows/search'
+    end
 
     get '/:show_id' do
       @show = Show.with_id params[:show_id]

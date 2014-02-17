@@ -5,8 +5,8 @@ Sequel.migration do
       Integer :episode
       Integer :season
 
-      foreign_key :show_id, :shows, on_delete: :cascade, null: false, default: 0
-      foreign_key :user_id, :users, on_delete: :cascade, null: false, default: 0
+      foreign_key :show_id, :shows, on_delete: :cascade, null: false
+      foreign_key :user_id, :users, on_delete: :cascade, null: false
 
       unique [:show_id, :user_id]
     end

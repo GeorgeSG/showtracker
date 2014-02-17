@@ -15,7 +15,7 @@ module ShowTracker
 
       # Usershow.create(user_id: current_user.id, show_id: show.id)
 
-      {success: true}.to_json
+      { success: true }.to_json
     end
   end
 end

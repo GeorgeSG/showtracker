@@ -5,20 +5,20 @@ module ShowTracker
     end
 
     def link_button(url, text = url, type = '', size = '', options = {})
-      btn_class = "btn"
+      btn_class = 'btn'
       btn_class << " btn-#{type.to_s}" unless type.empty?
       btn_class << " btn-#{size.to_s}" unless size.empty?
 
       if options[:class].nil?
         options[:class] = btn_class
       else
-        options[:class] = btn_class << " " << options[:class]
+        options[:class] = btn_class << ' ' << options[:class]
       end
 
       link_to url, text, options
     end
 
-    def image(src, options={})
+    def image(src, options = {})
       single_tag :img, options.merge(src: src)
     end
 
@@ -31,7 +31,7 @@ module ShowTracker
     end
 
     def hash_to_html_attributes(options = {})
-      html_attributes = ""
+      html_attributes = ''
       options.each do |key, value|
         next if value.nil?
         html_attributes << %Q(#{key}="#{value}" )

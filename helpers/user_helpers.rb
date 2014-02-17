@@ -1,7 +1,7 @@
 module ShowTracker
   module UserHelpers
     def logged?
-      not session[:uid].nil?
+      !session[:uid].nil?
     end
 
     def current_user

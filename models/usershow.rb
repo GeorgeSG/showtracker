@@ -20,9 +20,9 @@ class Usershow < Sequel::Model
   end
 
   def decrement_episode
-      unless episode.nil? || episode.zero?
-        self.episode -= 1
-      end
+    unless episode.nil? || episode.zero?
+      self.episode -= 1
+    end
   end
 
   def <=>(other)
