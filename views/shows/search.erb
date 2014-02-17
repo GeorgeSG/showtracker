@@ -3,15 +3,15 @@
 <% else %>
   <% @shows.each do |group, shows| %>
     <section>
-      <%= tag 'h6', group, class: 'list-header' %>
+      <%= h 6, group, class: 'list-header' %>
     <% shows.each do |show| %>
       <a href="/shows/<%= show.id %>">
         <div class="card small">
           <% unless show.poster.empty? %>
-            <%= single_tag 'img', src: "http://thetvdb.com/banners/#{show.poster}" %>
+            <%= image "http://thetvdb.com/banners/#{show.poster}" %>
           <% end %>
           <div class="content">
-            <%= tag 'h1', show.name %>
+            <%= h 1, show.name %>
           </div>
         </div>
       </a>

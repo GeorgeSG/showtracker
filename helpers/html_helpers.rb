@@ -10,14 +10,20 @@ module ShowTracker
       btn_class << " btn-#{size.to_s}" unless size.empty?
 
       if options[:class].nil?
-        p 'nil!'
         options[:class] = btn_class
       else
         options[:class] = btn_class << " " << options[:class]
       end
 
-      p options
       link_to url, text, options
+    end
+
+    def image(src, options={})
+      single_tag :img, options.merge(src: src)
+    end
+
+    def h(type, content, options = {})
+      tag "h#{type.to_s}", content, options
     end
 
     def glyphicon(name)
