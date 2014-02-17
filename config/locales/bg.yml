@@ -1,0 +1,84 @@
+bg:
+  general:
+    show_name: "Име на сериала"
+    season: "Сезон"
+    seasons: "Сезони"
+    episode: "Епизод"
+    episodes: "Епизоди"
+    genres: "Жанрове"
+    actors: "Актьори"
+
+    home: "Начало"
+    shows: "Сериали"
+    my_shows: "Моите сериали"
+    search: "Търсене"
+    results: "Резултати"
+
+    options: "Опции"
+    preferences: "Настройки"
+
+    sign_up: "Регистрация"
+    login: "Влез"
+    logout: "Излез"
+    reset: "Изчисти"
+
+    remove: "Изтрий"
+    remove_from_shows: "Премахни от 'Моите сериали'"
+    add_to_shows: "Добави в 'Моите сериали'"
+  layout:
+    toggle_navigation: "Навигация"
+    brand: "ShowTracker.eu"
+    copyright: "Всички права запазени"
+  home:
+    index:
+      header: "Дорбре дошли в ShowTracker!"
+      message: "Мястото, където можете да държите всичката информация за любимите Ви сериали!"
+  actors:
+    view:
+      actor_shows: "Сериали, в които участва:"
+  genres:
+    view:
+      genre_shows: "Сериали в този жанр:"
+  shows:
+    status: "Статус"
+    airs_on: "Излъчва се в"
+    airs_at: "Започва в"
+    content_rating: "Оценка на съдържанието"
+    first_aired: "Първо излъчване"
+    language: "Език"
+    rating: "Рейтинг"
+    overview: "Описание"
+
+    search:
+      no_shows_found: "Няма намерени сериали."
+  users:
+    username: "Потребителско име"
+    password: "Парола"
+    confirm_password: "Потвърдете паролата"
+    email: "Email"
+    first_name: "Име"
+    last_name: "Фамилия"
+    create_account: "Създай потребител"
+    remember_me: "Запомни ме"
+    not_registered_message: "Не сте регистриран? Регистрирайте се!"
+
+    my_shows:
+      no_shows_yet: "Все още не сте добавили сериали."
+  successes:
+    welcome: "Добре дошъл, %{name}! Приятно прекарване!"
+    added_show: "Успешно добавихте %{name} в 'Моите сериали'!"
+    removed_show: "Успешно премахнахте %{name} от 'Моите сериали'!"
+    episode_watched: "Успешно отбелязахте Сезон %{season} Епизод %{episode} на %{show} като изгледан!"
+    episode_unwatched: "Успешно отбелязахте Сезон %{season} Епизод %{episode} на %{show} като не-гледан!"
+    season_watched: "Успешно отбелязахте Сезон %{season} на %{show} като изгледан!"
+    season_unwatched: "Успешно отбелязахте Сезон %{season} на %{show} като не-гледан!"
+    logout: "Вие излезнахте успешно от системата! Пожелаваме Ви приятен ден!"
+    register: "Регистрацията премина успешн"
+  errors:
+    no_such_show: "Няма такъв сериал в базата ни!"
+    no_such_actor: "Няма такъв актьор в базата ни!"
+    no_such_genre: "Няма такъв жанр в базата ни!"
+    no_such_user: "Няма такъв потребител в базата ни!"
+    not_in_my_shows: "Не сте добавили този сериал в 'Моите сериали'!"
+    no_seasons_yet: "Все още нямате изгледани сезони!"
+    incorrect_password: "Въведохте грешна парола!"

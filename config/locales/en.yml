@@ -42,6 +42,7 @@ en:
   shows:
     status: "Status"
     airs_on: "Airs On"
+    airs_at: "Airs At"
     content_rating: "Content Rating"
     first_aired: "First Aired"
     language: "Language"
