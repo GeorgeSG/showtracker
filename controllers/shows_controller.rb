@@ -6,27 +6,27 @@ module ShowTracker
     helpers HTMLHelpers
     helpers PagingHelpers
 
-      get '/', '/page/:page' do
+      get '/', '/page/:page/?' do
         ITEMS_PER_PAGE = 12
 
         @query = params[:q] || ''
-        get_current_page
 
         criteria = Show.where("lower(name) like '%#{@query.downcase}%' AND NAME != ''")
         initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
-        @shows = criteria.order_by(Sequel.desc(:rating_count)).limit(ITEMS_PER_PAGE, @offset).all
+        @shows = criteria.order_by(Sequel.desc(:rating_count))
+        @shows = @shows.limit(ITEMS_PER_PAGE, @offset).all
+
         @url = NAMESPACE + '/'
 
         @title = 'Shows'
         erb :'shows/index'
       end
 
-      get '/list', '/list/page/:page', '/search', '/search/page/:page' do
+      get '/list', '/list/page/:page/?', '/search', '/search/page/:page/?' do
         ITEMS_PER_PAGE = 30
 
         @query = params[:q] || ''
-        get_current_page
 
         criteria = Show.where("lower(name) like '%#{@query.downcase}%' AND NAME != ''")
         initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)

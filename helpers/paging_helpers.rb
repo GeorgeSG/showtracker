@@ -1,11 +1,9 @@
 module ShowTracker
   module PagingHelpers
-    def get_current_page
-      @page = params[:page].to_i
-      @page= 1 if @page < 1
-    end
-
     def initialize_paging_properties(items_per_page = 10, results_count)
+      @page = params[:page].to_i
+      @page = 1 if @page < 1
+
       @total_pages = results_count / items_per_page + 1
 
       if @total_pages < 5

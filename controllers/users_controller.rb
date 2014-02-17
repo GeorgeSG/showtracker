@@ -1,5 +1,4 @@
 module ShowTracker
-
   class UsersController < Base
     NAMESPACE = '/users'.freeze
 
@@ -13,7 +12,7 @@ module ShowTracker
     end
 
     get '/add-show/:show_id', auth: :logged do
-      show = Show.where(id: params[:show_id]).first
+      show = Show.with_id params[:show_id]
       redirect '/', error: 'There is no such show in our database!' if show.nil?
 
       Usershow.create(user_id: current_user.id, show_id: show.id)
@@ -34,7 +33,7 @@ module ShowTracker
       redirect '/users/my-shows', success: "You\'ve successfully removed #{show.name} to your shows!"
     end
 
-    get '/decrement-episode/:usershow_id' do
+    get '/decrement-episode/:usershow_id', auth: :logged do
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.episode.zero? || usershow.episode.nil?
@@ -48,7 +47,7 @@ module ShowTracker
       redirect '/users/my-shows', success: message
     end
 
-    get '/increment-episode/:usershow_id' do
+    get '/increment-episode/:usershow_id', auth: :logged do
       usershow = Usershow.with_id params[:usershow_id]
       usershow.increment_episode
       usershow.save
@@ -57,7 +56,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/decrement-season/:usershow_id' do
+    get '/decrement-season/:usershow_id', auth: :logged do
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.season.nil? || usershow.season.zero?
@@ -71,7 +70,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/increment-season/:usershow_id' do
+    get '/increment-season/:usershow_id', auth: :logged do
       usershow = Usershow.with_id params[:usershow_id]
       usershow.increment_season
       usershow.save
@@ -104,9 +103,7 @@ module ShowTracker
       redirect '/', success: "Welcome, #{user.username}! Enjoy your stay!"
     end
 
-    get '/logout' do
-      redirect '/users/login' unless logged?
-
+    get '/logout', auth: :logged do
       session[:uid] = nil
       redirect '/', success: 'You\'ve logged out successfully! Have a nice day!'
     end
