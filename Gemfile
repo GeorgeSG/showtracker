@@ -18,6 +18,7 @@ gem 'pg', require: false
 gem 'sequel', '~> 4.7.0'
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
+gem 'json'
 gem 'sass', '~> 3.2.14'
 
 group :development do

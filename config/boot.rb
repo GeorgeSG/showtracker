@@ -9,9 +9,13 @@ Sass::Plugin.options[:style] = :compressed
 #===============================================================================
 # Require all constants, models, controllers and helpers
 #===============================================================================
+require_file = -> (file) { require file }
+Dir.glob('./extensions/**/*.rb').each(&require_file)
+
 require_relative '../base'
 
-require_file = -> (file) { require file }
+# These need to be required after the base class, because
+# the database connection needs to be set up first
 Dir.glob('./{models,helpers}/**/*.rb').each(&require_file)
 Dir.glob('./controllers/**/*.rb').each(&require_file)
 

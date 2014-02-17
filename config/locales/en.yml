@@ -75,6 +75,7 @@ en:
     logout: "You've logged out successfully! Have a nice day!"
     register: "You've registered succefully!"
   errors:
+    not_logged_in: "You need to be logged in to access this page!"
     no_such_show: "There is no such show in the database!"
     no_such_actor: "There is no such actor in the database!"
     no_such_genre: "There is no such genre in the database!"
