@@ -24,7 +24,7 @@ class Show < Sequel::Model
 
   class << self
     def with_id(show_id)
-      Show.where(id: show_id).first
+      where(id: show_id).first
     end
   end
 end

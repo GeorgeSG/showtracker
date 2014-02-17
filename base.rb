@@ -44,11 +44,6 @@ module ShowTracker
                            password: db_password)
     end
 
-
-    configure do
-      TVDB = TheTvDB.new
-    end
-
     register do
       def auth(type)
         condition do

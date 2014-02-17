@@ -31,11 +31,11 @@ class Usershow < Sequel::Model
 
   class << self
     def for_user_and_show(user_id, show_id)
-      Usershow.where(user_id: user_id, show_id: show_id).first
+      where(user_id: user_id, show_id: show_id).first
     end
 
     def with_id(usershow_id)
-      Usershow.where(id: usershow_id).first
+      where(id: usershow_id).first
     end
   end
 end

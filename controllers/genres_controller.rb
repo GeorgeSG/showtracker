@@ -6,7 +6,7 @@ module ShowTracker
     helpers HTMLHelpers
 
     get '/:genre_id' do
-      @genre = Genre.where(id: params[:genre_id]).first
+      @genre = Genre.with_id params[:genre_id]
       redirect '/', error: 'There is no such genre in our database' if @genre.nil?
 
       @title = @genre.name + ' :: Genre'
