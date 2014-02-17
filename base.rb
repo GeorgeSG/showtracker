@@ -33,6 +33,9 @@ module ShowTracker
     db_password = env_settings['db_password']
 
     DB = Sequel.postgres(db_name, host: db_host, user: db_user, password: db_password)
+    #
+    # use scss for stylesheets
+    Sass::Plugin.options[:style] = :compressed
 
     configure :production do
       disable :show_exceptions
