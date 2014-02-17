@@ -10,7 +10,7 @@ environment: development
 # Paths to various folders
 views_path:      './views'
 public_path:     './public'
-migrations_path: './db/migrate'
+migrations_path: './database/migrate'
 
 tvdb_api_key: '21D0254CFFE7F010'
 
