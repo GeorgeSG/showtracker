@@ -52,7 +52,7 @@ module ShowTracker
       redirect '/', error: t('errors.no_such_show') if @show.nil?
 
       if logged?
-        @usershow = Usershow.for_user_and_show(current_user.id, @show.id)
+        @usershow = Usershow.for user: current_user.id, and_show: @show.id
       end
 
       @title = @show.name

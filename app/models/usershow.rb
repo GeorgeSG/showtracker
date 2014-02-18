@@ -29,8 +29,8 @@ class Usershow < Sequel::Model
   end
 
   class << self
-    def for_user_and_show(user_id, show_id)
-      where(user_id: user_id, show_id: show_id).first
+    def for(user:, and_show:)
+      where(user_id: user, show_id: and_show).first
     end
 
     def with_id(usershow_id)

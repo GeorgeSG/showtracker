@@ -26,7 +26,7 @@ module ShowTracker
       show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if show.nil?
 
-      usershow = Usershow.for_user_and_show current_user.id, show.id
+      usershow = Usershow.for user: current_user.id, and_show: show.id
 
       if usershow.nil?
         flash[:error] = t('errors.not_in_my_shows')
