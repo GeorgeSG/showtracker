@@ -1,7 +1,5 @@
 module ShowTracker
   class RESTController < Base
-    require './core/api_result.rb'
-
     NAMESPACE = '/api'.freeze
 
     before do

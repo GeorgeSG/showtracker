@@ -5,7 +5,8 @@ require 'awesome_print'
 require 'pry'
 require 'yaml'
 
-settings = YAML.load(File.open('config/config.yml'))
+settings = YAML.load(File.open('./app/config/config.yml'))
+app_path = settings['app_path']
 
 environment = settings['environment']
 env_settngs = settings[environment]
@@ -17,6 +18,6 @@ db_password = env_settngs['db_password']
 
 Sequel.postgres(db_name, host: db_host, user: db_user, password: db_password)
 
-Dir['./{models}/**/*.rb'].each { |file| require file }
+Dir[app_path + '/models/**/*.rb'].each { |file| require file }
 
 Pry.start

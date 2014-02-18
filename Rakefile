@@ -5,7 +5,7 @@ namespace :db do
   require 'yaml'
 
   # Load config file
-  settings = YAML.load(File.open('config/config.yml'))
+  settings = YAML.load(File.open('./app/config/config.yml'))
   Sequel.extension :migration, :core_extensions
 
   migrator    = Sequel::Migrator
