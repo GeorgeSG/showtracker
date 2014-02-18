@@ -1,4 +1,5 @@
 module ShowTracker
+  # Actors Controller - all routes concerning Actors
   class ActorsController < Base
     NAMESPACE = '/actors'.freeze
 

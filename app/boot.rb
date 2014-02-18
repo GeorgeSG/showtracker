@@ -3,13 +3,19 @@ require 'yaml'
 require 'bundler/setup'
 Bundler.require :default
 
+# Main Application module
+module ShowTracker
+  CONFIG_PATH = 'config/config.yml'.freeze
+end
+
 # =============================================================================
 # Require all constants, models, controllers, helpers, etc
 # =============================================================================
 
-config_file  = File.open(File.expand_path('../config/config.yml', __FILE__))
-settings     = YAML.load(config_file)
-app_path     = settings['app_path'] || './'
+config_file = File.expand_path('../' + ShowTracker::CONFIG_PATH, __FILE__)
+config_file = File.open(config_file)
+settings    = YAML.load(config_file)
+app_path    = settings['app_path'] || './'
 
 require_file = -> (file) { require file }
 

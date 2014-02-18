@@ -1,4 +1,5 @@
 module ShowTracker
+  # Genres  Controller - all routes concerning Genres
   class GenresController < Base
     NAMESPACE = '/genres'.freeze
 

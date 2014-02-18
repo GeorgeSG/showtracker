@@ -1,4 +1,5 @@
 module ShowTracker
+  # User Helpers - helpers for user management and interactions
   module UserHelpers
     def logged?
       !session[:uid].nil?

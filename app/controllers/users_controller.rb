@@ -1,4 +1,5 @@
 module ShowTracker
+  # Users Controller - All routes handling user interactions and pages
   class UsersController < Base
     NAMESPACE = '/users'.freeze
 

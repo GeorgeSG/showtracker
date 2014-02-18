@@ -1,4 +1,6 @@
 module ShowTracker
+  # Registers a sinatra condition that helps restricting access to
+  # routes users aren't authorised for
   module AuthorizationChecker
     def auth(type)
       condition do

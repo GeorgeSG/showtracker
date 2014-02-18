@@ -1,4 +1,5 @@
 module ShowTracker
+  # Base Controller Class
   class Base < Sinatra::Base
     use Sass::Plugin::Rack
     use Rack::Flash
@@ -11,7 +12,7 @@ module ShowTracker
 
     helpers Sinatra::RedirectWithFlash
 
-    config_file 'config/config.yml'
+    config_file CONFIG_PATH
     environment = settings.environment
     env_settings = settings.send environment
 

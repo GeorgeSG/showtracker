@@ -1,4 +1,5 @@
 module ShowTracker
+  # Shows Controller - All routes handling Show interaction
   class ShowsController < Base
     NAMESPACE = '/shows'.freeze
 

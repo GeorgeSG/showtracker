@@ -7,7 +7,7 @@ require './app/boot'
 controllers = [
   ShowTracker::ActorsController,
   ShowTracker::GenresController,
-  ShowTracker::MainController,
+  ShowTracker::HomeController,
   ShowTracker::RESTController,
   ShowTracker::ShowsController,
   ShowTracker::UsersController

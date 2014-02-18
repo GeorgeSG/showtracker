@@ -1,4 +1,5 @@
 module ShowTracker
+  # HTML Helpers - helpers for generating HTML content
   module HTMLHelpers
     def link_to(url, text = url, options = {})
       tag :a, text, options.merge(href: url)

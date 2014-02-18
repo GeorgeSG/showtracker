@@ -1,4 +1,5 @@
 module ShowTracker
+  # REST Controller - provides routes for API access
   class RESTController < Base
     NAMESPACE = '/api'.freeze
 

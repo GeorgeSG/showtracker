@@ -1,5 +1,7 @@
 module ShowTracker
-  class MainController < Base
+  # Home Controller - for all general purpose routes that should not be in
+  # any other controller
+  class HomeController < Base
     NAMESPACE = '/'.freeze
 
     helpers UserHelpers
