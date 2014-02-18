@@ -12,7 +12,7 @@ module ShowTracker
       erb :'users/my-shows'
     end
 
-    get '/add-show/:show_id', auth: :logged do
+    get '/add-show/:show_id', auth: :logged, integer?: :show_id do
       show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if show.nil?
 
@@ -22,7 +22,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/remove-show/:show_id', auth: :logged do
+    get '/remove-show/:show_id', auth: :logged, integer?: :show_id do
       show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if show.nil?
 
@@ -39,7 +39,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/decrement-episode/:usershow_id', auth: :logged do
+    get '/decrement-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.episode.zero? || usershow.episode.nil?
@@ -60,7 +60,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/increment-episode/:usershow_id', auth: :logged do
+    get '/increment-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
       usershow.increment_episode
       usershow.save
@@ -74,7 +74,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/decrement-season/:usershow_id', auth: :logged do
+    get '/decrement-season/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.season.nil? || usershow.season.zero?
@@ -92,7 +92,7 @@ module ShowTracker
       redirect '/users/my-shows'
     end
 
-    get '/increment-season/:usershow_id', auth: :logged do
+    get '/increment-season/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
       usershow.increment_season
       usershow.save

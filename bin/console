@@ -8,7 +8,7 @@ require 'yaml'
 settings = YAML.load(File.open('./app/config/config.yml'))
 app_path = settings['app_path']
 
-environment = settings['environment']
+environment = ENV['RACK_ENV'] || 'development'
 env_settngs = settings[environment]
 
 db_host     = env_settngs['db_host']
