@@ -4,8 +4,7 @@ showtracker
 A simple webapp that helps you track the tv shows you watch.
 Future version 2.0 of [showtracker.eu](http://showtracker.eu)
 
-Setup
-=====
+## Setup ##
 
 In order to setup the application for development you need to:
 * Install PostgreSQL and create a database
@@ -14,8 +13,7 @@ In order to setup the application for development you need to:
 * Modify `app/config/config.yml` with your db settings
 * Run `rackup` (or use `rerun rackup` while developing)
 
-Tools
-=====
+## Tools ##
 
 ### Rake ###
 There are some Rake tasks to help you out. Run `rake -T` for more information.
