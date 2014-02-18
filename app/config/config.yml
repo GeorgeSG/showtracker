@@ -8,11 +8,9 @@ environments:
 environment: development
 
 # Paths to various folders
-views_path:      './views'
-public_path:     './public'
-migrations_path: './database/migrate'
-locales_path:    './config/locales/'
-
+app_path:         './app'
+migrations_path:  './database/migrate'
+locales_path:     './app/config/locales/'
 
 # Development specific settings
 development:

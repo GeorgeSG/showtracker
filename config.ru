@@ -1,4 +1,4 @@
-require './config/boot'
+require './app/boot'
 
 #===============================================================================
 # Map Top Level Controllers
