@@ -14,8 +14,8 @@ gem 'sinatra-redirect-with-flash', require: 'sinatra/redirect_with_flash'
 
 gem 'i18n'
 
-gem 'pg', require: false
-gem 'sequel', '~> 4.7.0'
+gem 'pg',          require: false
+gem 'sequel',      '~> 4.7.0'
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'json'
@@ -25,12 +25,14 @@ group :development do
   gem 'awesome_print', require: false
   gem 'rerun',         require: false
   gem 'pry',           require: false
-  gem 'faker',         require: false
   gem 'rubocop',       require: false
+  gem 'nokogiri',      require: false
 end
 
 group :test do
   gem 'rspec'
-  gem 'rack-test', require: 'rack/test'
+  gem 'rack-test',    require: 'rack/test'
+  gem 'faker'
+  gem 'factory_girl', '~> 4.4.0'
 end
 

@@ -1,6 +1,3 @@
-# Choose environment
-environment: development
-
 # Paths to various folders
 app_path:         './app'
 migrations_path:  './database/migrate'
@@ -13,9 +10,16 @@ development:
   db_user:     'showtracker'
   db_password: 'showtracker'
 
+# Development specific settings
+test:
+  db_host:     'localhost'
+  db_name:     'showtracker_test'
+  db_user:     'showtracker'
+  db_password: 'showtracker'
+
 # Production specific settings
 production:
   db_host:     'localhost'
-  db_name:     'showtracker'
+  db_name:     'showtracker_production'
   db_user:     'showtracker'
   db_password: 'showtracker'

@@ -143,7 +143,7 @@ module ShowTracker
       last_name        = params[:last_name]
 
       password_salt = hash_salt
-      password_hash = hash_pasword(password, password_salt)
+      password_hash = hash_password(password, password_salt)
 
       User.create(
         username: username,
