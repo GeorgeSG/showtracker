@@ -12,7 +12,7 @@ module ShowTracker
 
       @query = params[:q] || ''
 
-      criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
+      criteria = Show.search_for(@query)
       initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
       @shows = criteria.order_by(Sequel.desc(:rating_count))
@@ -29,7 +29,7 @@ module ShowTracker
 
       @query = params[:q] || ''
 
-      criteria = Show.where("LOWER(name) LIKE '%#{@query.downcase}%' AND name != ''")
+      criteria = Show.search_for(@query)
       initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
 
       @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, @offset).all

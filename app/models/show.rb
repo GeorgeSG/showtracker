@@ -21,5 +21,14 @@ class Show < Sequel::Model
     def with_id(show_id)
       where(id: show_id).first
     end
+
+    def search_for(value, in_columns: ['name'])
+      query = in_columns.map do |column|
+        "LOWER(#{column.to_s}) LIKE '%#{value.downcase}%'"
+      end
+
+      query = query.join(' OR ')
+      Show.where("(#{query}) AND name != ''")
+    end
   end
 end
