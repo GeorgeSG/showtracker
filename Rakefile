@@ -3,7 +3,7 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 
 
-desc "Run all specs in spec directory (excluding plugin specs)"
+desc 'Runs all specs in spec directory'
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = './spec/**/*_spec.rb'
 end
@@ -38,7 +38,7 @@ namespace :db do
     puts 'Done!'
   end
 
-  desc 'Migrates to version or newest migration (if version not supplied)'
+  desc 'Migrates to given or newest migration (if version not supplied)'
   task :migrate, [:version] do |task, arguments|
     if arguments[:version]
       puts "Migrating to version #{arguments[:version]}"
@@ -54,8 +54,7 @@ namespace :db do
   desc 'Reverts all migrations and applies them again'
   task :reset => [:drop, :migrate]
 
-  desc 'Creates next migration with the name specified.' \
-       'Name is decapitalized and spaces are replaced with "_"'
+  desc 'Generates next migration with the name specified'
   task :migration, [:name] do |task, arguments|
     puts 'Generating a new migration...'
     migration_name      = arguments[:name].downcase.gsub(/\s/, '_')
