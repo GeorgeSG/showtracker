@@ -12,7 +12,7 @@ In order to setup the application for development you need to:
 * Clone this repo
 * Run `bundle install`
 * Modify `app/config/config.yml` with your db settings
-* Run `rackup` (or use `rerun rackup` when developing)
+* Run `rackup` (or use `rerun rackup` while developing)
 
 Tools
 =====
