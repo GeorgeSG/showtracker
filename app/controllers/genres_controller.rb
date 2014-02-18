@@ -6,7 +6,7 @@ module ShowTracker
     helpers UserHelpers
     helpers HTMLHelpers
 
-    get '/:genre_id' do
+    get '/:genre_id', is_integer: :genre_id do
       @genre = Genre.with_id params[:genre_id]
       redirect '/', error: t('errors.no_such_genre') if @genre.nil?
 

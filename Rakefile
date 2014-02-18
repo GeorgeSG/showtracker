@@ -1,7 +1,7 @@
-task default: :spec
 require 'rspec/core'
 require 'rspec/core/rake_task'
 
+task default: :spec
 
 desc 'Runs all specs in spec directory'
 RSpec::Core::RakeTask.new(:spec) do |t|

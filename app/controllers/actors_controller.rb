@@ -6,7 +6,7 @@ module ShowTracker
     helpers UserHelpers
     helpers HTMLHelpers
 
-    get '/:actor_id' do
+    get '/:actor_id', is_integer: :actor_id do
       @actor = Actor.with_id params[:actor_id]
       redirect '/', error: t('errors.no_such_actors') if @actor.nil?
 

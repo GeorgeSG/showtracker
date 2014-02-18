@@ -9,6 +9,7 @@ module ShowTracker
     register Sinatra::MultiRoute
     register Sinatra::I18nSupport
     register ShowTracker::AuthorizationChecker
+    register ShowTracker::IntegerParameters
 
     helpers Sinatra::RedirectWithFlash
 
