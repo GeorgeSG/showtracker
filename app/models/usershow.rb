@@ -4,25 +4,23 @@ class Usershow < Sequel::Model
 
   def increment_season
     self.episode = 0
-    self.season = (season.nil? ? 1 : season + 1)
+    self.season += 1
   end
 
   def decrement_season
-    unless season.nil? || season.zero?
+    unless season.zero?
       self.episode = 0
       self.season -= 1
     end
   end
 
   def increment_episode
-    self.season = 1 if season.nil? || season.zero?
-    self.episode = (episode.nil? ? 1 : episode + 1)
+    self.season = 1 if season.zero?
+    self.episode += 1
   end
 
   def decrement_episode
-    unless episode.nil? || episode.zero?
-      self.episode -= 1
-    end
+    self.episode -= 1 unless episode.zero?
   end
 
   def <=>(other)

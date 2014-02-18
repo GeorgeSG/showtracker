@@ -4,12 +4,6 @@ class Show < Sequel::Model
   many_to_many :genres, join_table: :shows_genres
   many_to_many :actors
 
-  alias :rating_api :rating
-
-  def rating
-    rating_api || 0
-  end
-
   def seasons
     episodes.group_by(&:season_number).keys
   end

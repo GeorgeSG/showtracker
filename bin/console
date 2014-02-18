@@ -16,7 +16,7 @@ db_name     = env_settngs['db_name']
 db_user     = env_settngs['db_user']
 db_password = env_settngs['db_password']
 
-Sequel.postgres(db_name, host: db_host, user: db_user, password: db_password)
+DB = Sequel.postgres(db_name, host: db_host, user: db_user, password: db_password)
 
 Dir[app_path + '/models/**/*.rb'].each { |file| require file }
 
