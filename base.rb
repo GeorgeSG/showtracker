@@ -16,11 +16,8 @@ module ShowTracker
     env_settings = settings.send environment
 
     enable :sessions
-    set :session_secret, '51dd40e6847a1a6b31b75faf8f983721'
-    set :environment, environment
-
-    set :views,         File.expand_path(settings.views_path)
-    set :public_folder, File.expand_path(settings.public_path)
+    set :session_secret,         '51dd40e6847a1a6b31b75faf8f983721'
+    set :environment,             environment
     set :partial_template_engine, :erb
 
     load_locales settings.locales_path

@@ -153,8 +153,7 @@ module ShowTracker
         last_name: last_name
       )
 
-      flash[:success] = t('successes.register')
-      redirect NAMESPACE + '/login'
+      redirect NAMESPACE + '/login', success: t('successes.register')
     end
   end
 end

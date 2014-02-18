@@ -11,9 +11,8 @@ environment: development
 views_path:      './views'
 public_path:     './public'
 migrations_path: './database/migrate'
-locales_path:     './config/locales/'
+locales_path:    './config/locales/'
 
-tvdb_api_key: '21D0254CFFE7F010'
 
 # Development specific settings
 development:
