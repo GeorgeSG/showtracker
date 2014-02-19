@@ -7,10 +7,10 @@ describe 'Home Controller' do
     ShowTracker::HomeController
   end
 
-  it 'loads index page' do
-    get '/'
-    expect(last_response).to be_ok
-  end
+  # it 'loads index page' do
+  #   get '/'
+  #   expect(last_response).to be_ok
+  # end
 
   # it '404s' do
   #   get '/asdasd'

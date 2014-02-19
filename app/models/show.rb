@@ -15,6 +15,7 @@ class Show < Sequel::Model
   end
 
   def episodes_for_season(number)
+    return [] if episodes.empty?
     episodes.group_by(&:season_number)[number].sort_by!(&:episode_number)
   end
 

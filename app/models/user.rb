@@ -15,7 +15,7 @@ class User < Sequel::Model
   end
 
   def watched?(season, episode)
-    return nil if season.zero?
+    return false if season.zero?
 
     usershow = usershows.select { |us| us.show_id == episode.show.id }.first
     return false if usershow.nil? || season > usershow.season

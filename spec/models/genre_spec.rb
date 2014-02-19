@@ -12,7 +12,33 @@ describe Genre do
   end
 
   context 'Queries' do
-    it 'retrieves all shows in the genre'
-    it 'finds a genre by id'
+    before :each do
+      @genre = build(:genre).save
+    end
+
+    it 'retrieves all shows in the genre' do
+      show_one = build(:show).save
+      show_two = build(:show).save
+
+      @genre.shows.push show_one
+      @genre.shows.push show_two
+      @genre.save
+
+      @genre.shows.should =~ [show_one, show_two]
+
+      show_one.destroy
+      show_two.destroy
+
+      @genre.refresh
+      @genre.shows.should be_empty
+    end
+
+    it 'finds a genre by id' do
+      Genre.with_id(@genre.id).should == @genre
+    end
+
+    after :each do
+      @genre.destroy
+    end
   end
 end
