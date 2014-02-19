@@ -24,6 +24,10 @@ class Usershow < Sequel::Model
     self.episode -= 1 unless episode.zero?
   end
 
+  def season_watched?
+    episode >= show.episodes_for_season(season).size
+  end
+
   def <=>(other)
     show.name <=> other.show.name
   end

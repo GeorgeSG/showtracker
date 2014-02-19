@@ -8,6 +8,7 @@ module ShowTracker
     helpers HTMLHelpers
 
     get '/' do
+      @shows = Show.order_by(Sequel.desc(:rating_count)).limit(10).all
       erb :'home/index'
     end
   end

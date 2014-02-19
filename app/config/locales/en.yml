@@ -7,6 +7,7 @@ en:
     episodes: "Episodes"
     genres: "Genres"
     actors: "Actors"
+    network: "Network"
 
     home: "Home"
     shows: "Shows"
@@ -40,6 +41,7 @@ en:
     view:
       genre_shows: "Shows in that genre:"
   shows:
+    info: "Show Info"
     status: "Status"
     airs_on: "Airs On"
     airs_at: "Airs At"
@@ -47,7 +49,9 @@ en:
     first_aired: "First Aired"
     language: "Language"
     rating: "Rating"
+    running_time: "Runtime"
     overview: "Overview"
+    specials: "Specials"
 
     search:
       no_shows_found: "No shows found."

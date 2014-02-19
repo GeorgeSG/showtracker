@@ -19,7 +19,7 @@ module ShowTracker
       Usershow.create(user_id: current_user.id, show_id: show.id)
 
       flash[:success] = t('successes.added_show', name: show.name)
-      redirect '/users/my-shows'
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/remove-show/:show_id', auth: :logged, integer?: :show_id do
@@ -30,13 +30,13 @@ module ShowTracker
 
       if usershow.nil?
         flash[:error] = t('errors.not_in_my_shows')
-        redirect '/users/my-shows'
+        redirect NAMESPACE + '/my-shows'
       end
 
       usershow.destroy
 
       flash[:success] = t('successes.removed_show', name: show.name)
-      redirect '/users/my-shows'
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/decrement-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
@@ -44,7 +44,7 @@ module ShowTracker
 
       if usershow.episode.zero? || usershow.episode.nil?
         flash[:error] = 'You haven\'t watched any episodes yet!'
-        redirect '/users/my-shows'
+        redirect NAMESPACE + '/my-shows'
       end
 
       usershow.decrement_episode
@@ -57,11 +57,17 @@ module ShowTracker
         show: usershow.show.name
       )
 
-      redirect '/users/my-shows'
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/increment-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
+
+      if usershow.season_watched?
+        flash[:error] = 'There are no more episodes in this season!'
+        redirect NAMESPACE + '/my-shows'
+      end
+
       usershow.increment_episode
       usershow.save
 
@@ -71,14 +77,15 @@ module ShowTracker
         episode: usershow.episode,
         show: usershow.show.name
       )
-      redirect '/users/my-shows'
+
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/decrement-season/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
 
       if usershow.season.nil? || usershow.season.zero?
-        redirect '/users/my-shows', error: t('errors.no_seasons_yet')
+        redirect NAMESPACE + '/my-shows', error: t('errors.no_seasons_yet')
       end
 
       usershow.decrement_season
@@ -89,7 +96,8 @@ module ShowTracker
         season: usershow.season + 1,
         show: usershow.show.name
       )
-      redirect '/users/my-shows'
+
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/increment-season/:usershow_id', auth: :logged, integer?: :usershow_id do
@@ -99,14 +107,14 @@ module ShowTracker
 
       flash[:success] = t(
         'successes.season_watched',
-        season: usershow.season,
+        season: usershow.season - 1,
         show: usershow.show.name
       )
-      redirect '/users/my-shows'
+      redirect NAMESPACE + '/my-shows'
     end
 
     get '/login' do
-      redirect '/user/profile' if logged?
+      redirect NAMESPACE + '/profile' if logged?
       erb :'users/login'
     end
 
@@ -137,10 +145,15 @@ module ShowTracker
     post '/signup' do
       username         = params[:username]
       password         = params[:password]
-      # confirm_password = params[:confirm_password]
+      confirm_password = params[:confirm_password]
       email            = params[:email]
       first_name       = params[:first_name]
       last_name        = params[:last_name]
+
+      unless password == confirm_password
+        flash[:error] = 'The two passwords entered do not match'
+        redirect NAMESPACE + '/signup'
+      end
 
       password_salt = hash_salt
       password_hash = hash_password(password, password_salt)

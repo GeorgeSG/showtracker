@@ -1,0 +1,82 @@
+<div class="tab-pane fade in active" id="info">
+  <div class="col-md-3">
+    <h3><%= t 'shows.info' %></h3>
+
+    <% unless @show.network.nil? %>
+      <strong><%= t 'general.network' %>:</strong>
+      <a href="/network/<%= @show.network.id %>"><%= @show.network.name %></a><br />
+    <% end %>
+
+    <% unless @show.status.empty? %>
+      <strong><%= t 'shows.status' %>:</strong> <%= @show.status %><br />
+    <% end %>
+
+    <% unless @show.airs_day.empty? && @show.airs_time.empty? %>
+      <strong>Airs:</strong> <%= "#{@show.airs_day} at #{@show.airs_time}" %><br />
+    <% end %>
+
+    <% unless @show.content_rating.empty? %>
+      <strong><%= t 'shows.content_rating' %>:</strong> <%= @show.content_rating %><br />
+    <% end %>
+
+    <% unless @show.first_aired.empty? %>
+      <strong><%= t 'shows.first_aired' %>:</strong> <%= @show.first_aired %><br />
+    <% end %>
+
+    <% unless @show.rating.zero? %>
+      <strong><%= t 'shows.rating' %>:</strong> <%= @show.rating %><br />
+    <% end %>
+
+    <% unless @show.running_time.nil? || @show.running_time.zero? %>
+      <strong><%= t 'shows.running_time' %>:</strong> <%= @show.running_time %> minutes<br />
+    <% end %>
+
+    <% unless @show.genres.empty? %>
+      <strong><%= t 'general.genres' %>:</strong>
+      <%=
+        @show.genres.map { |genre|
+          "<a href='/genres/#{genre.id}'>#{genre.name}</a>"
+        }.join(', ')
+      %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h3><%= t 'shows.overview' %></h3>
+    <%= @show.overview %>
+  </div>
+
+  <div class='col-md-3 text-center'>
+    <h3><%= t 'general.my_shows' %></h3>
+    <% if logged? && current_user.has_show?(@show.id) %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t 'general.season' %></th>
+            <th class="text-center"><%= t 'general.episode' %></th>
+            <th class="text-center"><%= t 'general.options' %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">
+              <%= link_button "/users/increment-season/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
+              <%= @usershow.season %>
+              <%= link_button "/users/decrement-season/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
+            </td>
+            <td class="text-center">
+              <%= link_button "/users/increment-episode/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
+              <%= @usershow.episode %>
+              <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
+            </td>
+            <td>
+              <%= link_button "/users/remove-show/#{@show.id}", t('general.remove'), :danger, :xs %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <%= link_button "/users/add-show/#{@show.id}", t('general.add_to_shows'), :success %>
+    <% end %>
+  </div>
+</div>

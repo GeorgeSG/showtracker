@@ -2,6 +2,7 @@
 class Show < Sequel::Model
   one_to_many :episodes
   one_to_many :usershows
+  many_to_one :network
   many_to_many :genres, join_table: :shows_genres
   many_to_many :actors
 
@@ -15,6 +16,10 @@ class Show < Sequel::Model
 
   def episodes_for_season(number)
     episodes.group_by(&:season_number)[number]
+  end
+
+  def upcoming
+    episodes.select(&:upcoming?)
   end
 
   class << self

@@ -1,60 +1,18 @@
-<div class="pull-right">
-<% if logged? && current_user.has_show?(@show.id) %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="text-center"><%= t 'general.season' %></th>
-        <th class="text-center"><%= t 'general.episode' %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="text-center">
-          <%= link_button "/users/increment-season/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-          <span style='padding: 0 5px'><%= @usershow.season || 0 %></span>
-          <%= link_button "/users/decrement-season/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
-        </td>
-        <td class="text-center">
-          <%= link_button "/users/increment-episode/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-          <span style='padding: 0 5px'><%= @usershow.episode || 0 %></span>
-          <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <%= link_button "/users/remove-show/#{@show.id}", t('general.remove_from_shows'), :danger %>
-<% else %>
-  <%= link_button "/users/add-show/#{@show.id}", t('general.add_to_shows'), :success %>
-<% end %>
+<div class="text-center">
+  <%= image "http://thetvdb.com/banners/#{@show.banner}" %>
 </div>
-
-<%= image "http://thetvdb.com/banners/#{@show.banner}" %><br />
-
-<%= t 'shows.status' %>:          <%= @show.status %><br />
-<%= t 'shows.airs_on' %>:         <%= @show.airs_day %><br />
-<%= t 'shows.airs_at' %>:         <%= @show.airs_time %><br />
-<%= t 'shows.content_rating' %>:  <%= @show.content_rating %><br />
-<%= t 'shows.first_aired' %>:     <%= @show.first_aired %><br />
-<%= t 'shows.rating' %>:          <%= @show.rating %> (<%= @show.rating_count %> votes)<br />
-
-<h3><%= t 'general.genres' %></h3>
-<% @show.genres.each do |genre| %>
-  - <%= link_to "/genres/#{genre.id}", genre.name %><br/ >
-<% end %>
-
-<h3><%= t 'shows.overview' %></h3>
-<%= @show.overview %>
+<%= partial :'partials/show/tabs' %>
+<div class="tab-content">
+  <%= partial :'partials/show/overview' %>
+  <%= partial :'partials/show/actors' %>
+  <%= partial :'partials/show/seasons' %>
+</div>
+<div class="clearfix"></div>
 
 
-<h3><%= t 'general.actors' %></h3>
-<% @show.actors.each do |actor| %>
-  - <%= link_to "/actors/#{actor.id}", actor.name %><br />
-<% end %>
-
-<h3><%= t 'general.seasons' %></h3>
-<% @show.seasons.each do |season| %>
-  <h4>Season <%= season %></h4>
-  <% @show.episodes_for_season(season).each do |episode| %>
-    - <%= episode.name %><br />
-  <% end %>
-<% end %>
+<script>
+$('#show-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>

@@ -14,6 +14,16 @@ class User < Sequel::Model
     [first_name, last_name].join(' ').strip
   end
 
+  def watched?(season, episode)
+    return nil if season.zero?
+
+    usershow = usershows.select { |usershow| usershow.show_id == episode.show.id }.first
+    return false if usershow.nil? || season > usershow.season
+    return true  if season < usershow.season
+
+    episode.episode_number <= usershow.episode
+  end
+
   def validate
     super
     errors.add(:username, 'can\'t be empty') if username.nil? || username.empty?

@@ -20,12 +20,12 @@
         </td>
         <td class="text-center">
           <%= link_button "/users/increment-season/#{usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-          <span style='padding: 0 5px'><%= usershow.season || 0%></span>
+          <span style='padding: 0 5px'><%= usershow.season %></span>
           <%= link_button "/users/decrement-season/#{usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
         <td class="text-center">
           <%= link_button "/users/increment-episode/#{usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-          <span style='padding: 0 5px'><%= usershow.episode || 0%></span>
+          <span style='padding: 0 5px'><%= usershow.episode %></span>
           <%= link_button "/users/decrement-episode/#{usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
         <td class="text-center"><%= usershow.show.status %></td>

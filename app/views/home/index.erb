@@ -1,8 +1,31 @@
-<%= partial(:'partials/background') %>
-<div class="jumbotron">
-  <h1><%= t 'home.index.header' %></h1>
+<div class="well">
+  <h4><%= t 'home.index.header' %></h4>
   <p><%= t 'home.index.message' %></p>
   <p>
-    <%= link_button '/users/login', t('general.sign_up'), :primary, :lg, role: 'button' %>
+    <% if logged? %>
+      <%= link_button 'users/my-shows', t('general.my_shows'), :primary %>
+    <% else %>
+      <%= link_button '/users/login', t('general.login'), :primary %>
+      <%= link_button '/users/login', t('general.sign_up'), :success %>
+    <% end %>
   </p>
+</div>
+<h3>Featured Shows</h3>
+<div class="row text-center">
+  <div class='col-md-6'>
+    <% @shows.first(5).each do |show| %>
+      <a href="/shows/<%= show.id %>" title="<%= show.name %>">
+        <%= image "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
+          <p><%= show.name %></p>
+        <% end %>
+      </a>
+  </div>
+  <div class='col-md-6'>
+    <% @shows.last(5).each do |show| %>
+      <a href="/shows/<%= show.id %>" title="<%= show.name %>">
+        <%= image "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
+          <p><%= show.name %></p>
+        <% end %>
+      </a>
+  </div>
 </div>
