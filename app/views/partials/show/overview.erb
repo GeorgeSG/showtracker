@@ -91,14 +91,25 @@
             <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
           </td>
           <td class="text-center">
-            <%= link_button "/users/remove-show/#{@show.id}", t('general.remove'), :danger, :xs %>
+            <a
+              href="/users/remove-show/<%= @show.id %>"
+              class="btn btn-danger btn-xs confirm"
+              data-confirm="Are you sure you want to remove this show from your shows?">
+                <%=  t('general.remove') %>
+            </a>
           </td>
         </tr>
         </tbody>
       </table>
       <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @usershow.progress.to_i%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @usershow.progress.to_i %>%;">
-          <%= @usershow.progress.to_i %>%
+        <div
+          class="progress-bar progress-bar-success"
+          role="progressbar"
+          aria-valuenow="<%= @usershow.progress.to_i%>"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: <%= @usershow.progress.to_i %>%;">
+            <%= @usershow.progress.to_i %>%
         </div>
       </div>
     <% else %>

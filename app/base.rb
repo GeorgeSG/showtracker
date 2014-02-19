@@ -48,7 +48,8 @@ module ShowTracker
     end
 
     not_found do
-      erb 'oops'
+      @title = "Not Found"
+      erb :'not_found'
     end
   end
 end

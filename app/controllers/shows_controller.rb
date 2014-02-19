@@ -13,7 +13,7 @@ module ShowTracker
     end
 
     get '/', '/page/:page/?' do
-      @name = params[:q] || ''
+      @name = params[:name] || ''
 
       select_cards_for_show(@name)
 
@@ -24,7 +24,7 @@ module ShowTracker
 
     get '/list', '/list/page/:page/?' do
       items_per_page = 30
-      @name = params[:q] || ''
+      @name = params[:name] || ''
 
       select_list_for_show(@name)
 
