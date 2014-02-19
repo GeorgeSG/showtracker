@@ -9,15 +9,11 @@ module ShowTracker
     helpers ShowHelpers
 
     get '/', '/page/:page/?' do
-      items_per_page = 12
       @name = params[:q] || ''
 
-      criteria = search_for(@name).order_by(Sequel.desc(:rating_count))
-      initialize_paging_properties(items_per_page, criteria.count)
+      select_cards_for_show(@name)
 
-      @shows = criteria.limit(items_per_page, @offset).all
-
-      @url = NAMESPACE + '/'
+      @paging_url = NAMESPACE + '/'
       @title = t('general.shows')
       erb :'shows/index'
     end
@@ -32,7 +28,7 @@ module ShowTracker
       @shows = criteria.limit(items_per_page, @offset).all
       @shows = @shows.group_by { |show| show.name[0] }
 
-      @url = NAMESPACE + '/list/'
+      @paging_url = NAMESPACE + '/list/'
       @title = t('general.shows')
       erb :'shows/list'
     end
@@ -52,7 +48,7 @@ module ShowTracker
       @shows = dataset.limit(items_per_page, @offset).all
 
       @title = t('general.shows')
-      @url = NAMESPACE + '/search/'
+      @paging_url = NAMESPACE + '/search/'
 
       erb :'shows/index'
     end

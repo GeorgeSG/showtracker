@@ -3,12 +3,12 @@
   <div class="row" style="margin: 20px inherit">
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group">
-        <a href="<%= "#{url}page/1?#{@query}" %>" <% if @page == 1 %> disabled="disabled"<% end %> type="button" class="btn btn-default">&laquo;</a>
-        <a href="<%= "#{url}page/#{@page - 1}?#{@query}" %>" <% if @page == 1 %> disabled="disabled"<% end %> type="button" class="btn btn-default">&larr;</a>
+        <a href="<%= "#{@paging_url}page/1?#{@query}" %>" <% if @page == 1 %> disabled="disabled"<% end %> type="button" class="btn btn-default">&laquo;</a>
+        <a href="<%= "#{@paging_url}page/#{@page - 1}?#{@query}" %>" <% if @page == 1 %> disabled="disabled"<% end %> type="button" class="btn btn-default">&larr;</a>
 
         <% @start_page.upto(@end_page).each do |page_number| %>
           <a
-            href="<%= url %>page/<%= page_number %>?<%= @query %>"
+            href="<%= @paging_url %>page/<%= page_number %>?<%= @query %>"
             <% if page_number == @page %>disabled="disabled"<% end %>
             type="button"
             class="btn btn-default">
@@ -16,8 +16,8 @@
           </a>
         <% end %>
 
-        <a href="<%= "#{url}page/#{@page + 1}?#{@query}" %>"<% if @page == @total_pages %> disabled="disabled"<% end %> type="button" class="btn btn-default">&rarr;</a>
-        <a href="<%= "#{url}page/#{@total_pages}?#{@query}" %>"<% if @page == @total_pages %> disabled="disabled"<% end %> type="button" class="btn btn-default">&raquo;</a>
+        <a href="<%= "#{@paging_url}page/#{@page + 1}?#{@query}" %>"<% if @page == @total_pages %> disabled="disabled"<% end %> type="button" class="btn btn-default">&rarr;</a>
+        <a href="<%= "#{@paging_url}page/#{@total_pages}?#{@query}" %>"<% if @page == @total_pages %> disabled="disabled"<% end %> type="button" class="btn btn-default">&raquo;</a>
       </div>
     </div>
   </div>

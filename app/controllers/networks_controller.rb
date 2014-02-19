@@ -12,15 +12,9 @@ module ShowTracker
       @network = Network.with_id params[:network_id]
       redirect '/', error: t('errors.no_such_network') if @network.nil?
 
-      items_per_page = 12
+      select_cards_for_object(@network)
 
-      dataset = join_networks(Show, @network.id).order_by(Sequel.desc(:rating_count))
-      dataset = select_all_shows(dataset)
-      initialize_paging_properties(items_per_page, dataset.count)
-
-      @shows = dataset.limit(items_per_page, @offset).all
-
-      @url = "#{NAMESPACE}/#{@network.id}/"
+      @paging_url = "#{NAMESPACE}/#{@network.id}/"
       @title = @network.name
       @subtitle = "(#{t('general.network')})"
       erb :'networks/view'

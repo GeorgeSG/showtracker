@@ -12,15 +12,9 @@ module ShowTracker
       @actor = Actor.with_id params[:actor_id]
       redirect '/', error: t('errors.no_such_actors') if @actor.nil?
 
-      items_per_page = 12
+      select_cards_for_object(@actor)
 
-      dataset = join_actors(Show, @actor.id).order_by(Sequel.desc(:rating_count))
-      dataset = select_all_shows(dataset)
-      initialize_paging_properties(items_per_page, dataset.count)
-
-      @shows = dataset.limit(items_per_page, @offset).all
-
-      @url = "#{NAMESPACE}/#{@actor.id}/"
+      @paging_url = "#{NAMESPACE}/#{@actor.id}/"
       @title = @actor.name
       @subtitle = "(#{t('general.actor')})"
       erb :'actors/view'

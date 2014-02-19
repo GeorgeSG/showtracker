@@ -24,8 +24,8 @@ module ShowTracker
 
     def join_actors(dataset, actor_id)
       dataset = dataset
-          .join(:actors_shows, actors_shows__show_id: :shows__id)
-          .join(:actors,       actors__id: :actors_shows__actor_id)
+        .join(:actors_shows, actors_shows__show_id: :shows__id)
+        .join(:actors,       actors__id: :actors_shows__actor_id)
 
       dataset.where(actors__id: actor_id)
     end
@@ -39,12 +39,33 @@ module ShowTracker
     end
 
     def join_networks(dataset, network_id)
-        dataset = dataset.join(:networks, networks__id: :shows__network_id)
-        dataset.where(networks__id: network_id)
+      dataset = dataset.join(:networks, networks__id: :shows__network_id)
+      dataset.where(networks__id: network_id)
     end
 
     def select_all_shows(dataset)
       dataset.select_all(:shows).distinct
+    end
+
+    def select_cards_for_show(name)
+      items_per_page = 12
+      criteria = search_for(name).order_by(Sequel.desc(:rating_count))
+      initialize_paging_properties(items_per_page, criteria.count)
+
+      @shows = criteria.limit(items_per_page, @offset).all
+    end
+
+    def select_cards_for_object(object)
+      object_name = object.class.to_s.downcase
+      items_per_page = 12
+
+      dataset = send "join_#{object_name}s", Show, object.id
+      dataset = dataset.order_by(Sequel.desc(:rating_count))
+      dataset = select_all_shows(dataset)
+
+      initialize_paging_properties(items_per_page, dataset.count)
+
+      @shows = dataset.limit(items_per_page, @offset).all
     end
   end
 end
