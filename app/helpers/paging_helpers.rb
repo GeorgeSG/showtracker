@@ -6,6 +6,7 @@ module ShowTracker
       @total_pages = results_count / items_per_page + 1
       @offset = items_per_page * (@page - 1)
       calculate_start_and_end
+      @query = request.query_string
     end
 
     private

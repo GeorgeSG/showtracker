@@ -7,7 +7,7 @@
       <thead><tr><th>Name</th></tr></thead>
       <tbody>
         <% @show.actors.each do |actor| %>
-          <tr><td><%= link_to "/actors/#{actor.id}", actor.name %></td></tr>
+          <tr><td><%= link_to "/shows/search?actor=#{actor.id}", actor.name %></td></tr>
         <% end %>
       </tbody>
     </table>

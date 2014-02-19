@@ -6,45 +6,55 @@ module ShowTracker
     helpers UserHelpers
     helpers HTMLHelpers
     helpers PagingHelpers
+    helpers ShowHelpers
 
     get '/', '/page/:page/?' do
-      ITEMS_PER_PAGE = 12
+      items_per_page = 12
+      @name = params[:q] || ''
 
-      @query = params[:q] || ''
+      criteria = search_for(@name).order_by(Sequel.desc(:rating_count))
+      initialize_paging_properties(items_per_page, criteria.count)
 
-      criteria = Show.search_for(@query)
-      initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
-
-      @shows = criteria.order_by(Sequel.desc(:rating_count))
-      @shows = @shows.limit(ITEMS_PER_PAGE, @offset).all
+      @shows = criteria.limit(items_per_page, @offset).all
 
       @url = NAMESPACE + '/'
-
       @title = t('general.shows')
       erb :'shows/index'
     end
 
-    get '/list', '/list/page/:page/?', '/search', '/search/page/:page/?' do
-      ITEMS_PER_PAGE = 30
+    get '/list', '/list/page/:page/?' do
+      items_per_page = 30
+      @name = params[:q] || ''
 
-      @query = params[:q] || ''
+      criteria = search_for(@name).order_by(:name)
+      initialize_paging_properties(items_per_page, criteria.count)
 
-      criteria = Show.search_for(@query)
-      initialize_paging_properties(ITEMS_PER_PAGE, criteria.count)
-
-      @shows = criteria.order_by(:name).limit(ITEMS_PER_PAGE, @offset).all
+      @shows = criteria.limit(items_per_page, @offset).all
       @shows = @shows.group_by { |show| show.name[0] }
 
-      if request.path_info.match(/list/)
-        @title = t('general.shows')
-        @url = NAMESPACE + '/list/'
-      else
-        @title = t('general.results')
-        @subtitle = "(#{criteria.count})"
-        @url = NAMESPACE + '/search/'
-      end
+      @url = NAMESPACE + '/list/'
+      @title = t('general.shows')
+      erb :'shows/list'
+    end
 
-      erb :'shows/search'
+    get '/search', '/search/page/:page/?' do
+      items_per_page = 12
+      name    = params[:name]
+      actor   = params[:actor]
+      genre   = params[:genre]
+      network = params[:network]
+      status  = params[:status]
+
+      dataset = advanced_search_dataset(name, actor, genre, network, status)
+      initialize_paging_properties(items_per_page, dataset.count)
+
+      dataset = dataset.order_by(Sequel.desc(:shows__rating_count))
+      @shows = dataset.limit(items_per_page, @offset).all
+
+      @title = t('general.shows')
+      @url = NAMESPACE + '/search/'
+
+      erb :'shows/index'
     end
 
     get '/:show_id' do

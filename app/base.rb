@@ -39,7 +39,7 @@ module ShowTracker
     )
 
     Sass::Plugin.options[:style] = :compressed
-    Sass::Plugin.options[:css_location] = settings.app_path + '/public/stylesheets'
+    Sass::Plugin.options[:css_location] = "#{settings.app_path}/public/stylesheets"
 
     I18n.enforce_available_locales = false
 
