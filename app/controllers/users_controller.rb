@@ -5,7 +5,6 @@ module ShowTracker
 
     helpers UserHelpers
     helpers HTMLHelpers
-    helpers UsershowHelpers
 
     get '/my-shows', auth: :logged do
       @usershows = current_user.usershows.sort
@@ -17,7 +16,7 @@ module ShowTracker
       show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if show.nil?
 
-      add_show(current_user.id, show.id)
+      Usershow.create(user_id: current_user.id, show_id: show.id)
 
       flash[:success] = t('successes.added_show', name: show.name)
       redirect NAMESPACE + '/my-shows'
@@ -26,15 +25,27 @@ module ShowTracker
     get '/remove-show/:show_id', auth: :logged, integer?: :show_id do
       show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if show.nil?
-      remove_show(current_user.id, show.id)
+      usershow = Usershow.for user: current_user.id, and_show: show.id
 
+      if usershow.nil?
+        flash[:error] = t('errors.not_in_my_shows')
+        redirect NAMESPACE + '/my-shows'
+      end
+
+      usershow.destroy
       flash[:success] = t('successes.removed_show', name: show.name)
       redirect NAMESPACE + '/my-shows'
     end
 
     get '/decrement-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
-      decrement_episode(usershow)
+      if usershow.episode.zero? || usershow.episode.nil?
+        flash[:error] = 'You haven\'t watched any episodes yet!'
+        redirect NAMESPACE + '/my-shows'
+      end
+
+      usershow.decrement_episode
+      usershow.save
 
       flash[:success] = t(
         'successes.episode_unwatched',
@@ -48,7 +59,13 @@ module ShowTracker
 
     get '/increment-episode/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
-      increment_episode(usershow)
+      if usershow.season_watched?
+        flash[:error] = 'There are no more episodes in this season!'
+        redirect NAMESPACE + '/my-shows'
+      end
+
+      usershow.increment_episode
+      usershow.save
 
       flash[:success] = t(
         'successes.episode_watched',
@@ -62,7 +79,12 @@ module ShowTracker
 
     get '/decrement-season/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
-      decrement_season(usershow)
+      if usershow.season.nil? || usershow.season.zero?
+        redirect NAMESPACE + '/my-shows', error: t('errors.no_seasons_yet')
+      end
+
+      usershow.decrement_season
+      usershow.save
 
       flash[:success] = t(
         'successes.season_unwatched',
@@ -75,11 +97,18 @@ module ShowTracker
 
     get '/increment-season/:usershow_id', auth: :logged, integer?: :usershow_id do
       usershow = Usershow.with_id params[:usershow_id]
-      increment_season(usershow)
+
+      if usershow.season == usershow.show.seasons_count
+        flash[:error] = 'This is the last season yet!'
+        redirect NAMESPACE + '/my-shows'
+      end
+
+      usershow.increment_season
+      usershow.save
 
       flash[:success] = t(
         'successes.season_watched',
-        season: usershow.season - 1,
+        season: usershow.season,
         show: usershow.show.name
       )
 

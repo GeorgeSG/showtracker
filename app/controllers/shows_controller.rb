@@ -22,11 +22,7 @@ module ShowTracker
       items_per_page = 30
       @name = params[:q] || ''
 
-      criteria = search_for(@name).order_by(:name)
-      initialize_paging_properties(items_per_page, criteria.count)
-
-      @shows = criteria.limit(items_per_page, @offset).all
-      @shows = @shows.group_by { |show| show.name[0] }
+      select_list_for_show(@name)
 
       @paging_url = NAMESPACE + '/list/'
       @title = t('general.shows')

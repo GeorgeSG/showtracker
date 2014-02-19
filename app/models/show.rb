@@ -11,7 +11,7 @@ class Show < Sequel::Model
   end
 
   def seasons_count
-    seasons.count
+    seasons.reject(&:zero?).count
   end
 
   def episodes_for_season(number)
