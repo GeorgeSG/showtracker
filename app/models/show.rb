@@ -22,6 +22,12 @@ class Show < Sequel::Model
     episodes.select(&:upcoming?)
   end
 
+  def next_episode
+    return nil if upcoming.empty?
+
+    upcoming.sort_by(&:first_aired).first
+  end
+
   class << self
     def with_id(show_id)
       where(id: show_id).first

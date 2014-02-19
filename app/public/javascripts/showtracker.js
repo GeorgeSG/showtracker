@@ -20,4 +20,16 @@ $(function() {
             $this.find("h1").delay(100).fadeIn(100);
         }
     });
+
+    $(".confirm").on("click", function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var message = $this.data('confirm');
+
+        BootstrapDialog.confirm(message, function(result){
+            if(result) {
+                window.location.href = e.currentTarget.href;
+            }
+        });
+    });
 })

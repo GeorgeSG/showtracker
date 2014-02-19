@@ -7,6 +7,7 @@
     <title>ShowTracker</title>
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
     <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap-dialog.min.css" rel="stylesheet">
     <link href="/stylesheets/showtracker.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -14,8 +15,15 @@
     <![endif]-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap-dialog.min.js"></script>
     <script src="/javascripts/showtracker.js"></script>
-    <%= partial 'partials/background' %>
+    <style>
+      body {
+        background-image: url("http://thetvdb.com/banners/<%= @background %>");
+        background-size: cover;
+        background-attachment: fixed;
+      }
+    </style>
   </head>
   <body>
     <div id="wrap">

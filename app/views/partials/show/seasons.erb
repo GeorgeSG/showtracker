@@ -27,7 +27,7 @@
           >
           <td><%= episode.episode_number %></td>
           <td><%= episode.name %></td>
-          <td><%= episode.first_aired %></td>
+          <td><%= pretty_date(episode.first_aired) %></td>
           <td><a href="#" class="btn btn-xs btn-primary">Details</a></td>
         </tr>
       <% end %>

@@ -1,1 +1,4 @@
+<% if @shows.empty? %>
+  <p><%= t 'shows.search.no_shows_found' %></p>
+<% end %>
 <%= partial :'partials/show/cards' %>

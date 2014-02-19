@@ -4,7 +4,9 @@
     <p>There are no actors listed in this show</o>
   <% else %>
     <table class="table table-striped">
-      <thead><tr><th>Name</th></tr></thead>
+      <thead>
+        <tr><th>Name</th></tr>
+      </thead>
       <tbody>
         <% @show.actors.each do |actor| %>
           <tr><td><%= link_to "/actors/#{actor.id}", actor.name %></td></tr>

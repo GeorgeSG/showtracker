@@ -1,15 +1,15 @@
 <% if @usershows.empty? %>
   <p><%= t 'users.my_shows.no_shows_yet' %></p>
 <% else%>
-
   <table class="table table-striped">
     <thead>
       <tr>
         <th><%= t 'general.show_name' %></th>
-        <th width="100px" class="text-center"><%= t 'general.season' %></th>
-        <th width="100px" class="text-center"><%= t 'general.episode' %></th>
-        <th width="150px" class="text-center"><%= t 'shows.status' %></th>
-        <th><%= t 'general.options' %></th>
+        <th width="90px" class="text-center"><%= t 'general.season' %></th>
+        <th width="90px" class="text-center"><%= t 'general.episode' %></th>
+        <th width="100px" class="text-center"><%= t 'shows.status' %></th>
+        <th width="150px" class="text-center">Next Episode</th>
+        <th width="100px" class="text-center"><%= t 'general.options' %></th>
       </tr>
     </thead>
     <tbody>
@@ -28,12 +28,29 @@
           <span style='padding: 0 5px'><%= usershow.episode %></span>
           <%= link_button "/users/decrement-episode/#{usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
         </td>
-        <td class="text-center"><%= usershow.show.status %></td>
-        <td>
-          <%= link_button "/users/remove-show/#{usershow.show.id}", t('general.remove'), :danger, :xs %>
+        <td class="text-center <%= show_status_css_class(usershow.show.status) %>">
+          <%= usershow.show.status %>
+        </td>
+        <td class="text-center">
+          <% unless usershow.show.upcoming.empty? %>
+            <%= pretty_date(usershow.show.next_episode.first_aired) %>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <% unless usershow.show.imdb_id.empty? %>
+            <a href="http://imdb.com/title/<%= usershow.show.imdb_id %>" target="_blank">
+              <%= image '/img/imdb.png', style: 'width: 22px' %>
+            </a>
+          <% end %>
+          <a class="btn btn-danger btn-xs confirm" data-confirm="Are you sure you want to remove this show from your shows?" href="/users/remove-show/<%=usershow.show.id%>">
+            <%= glyphicon 'remove' %>
+          </a>
         </td>
       </tr>
     <% end %>
     </tbody>
   </table>
 <% end %>
+
+<script>
+</script>

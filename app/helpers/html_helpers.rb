@@ -9,8 +9,9 @@ module ShowTracker
     end
 
     def pretty_date(date)
+      return nil if date.nil? || date.empty?
       date = Date.parse(date)
-      date.strftime('%a, %e %B %Y')
+      date.strftime('%a, %e %b %Y')
     end
 
     def link_to(url, text = url, options = {})
