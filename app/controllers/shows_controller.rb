@@ -59,14 +59,16 @@ module ShowTracker
       redirect '/', error: t('errors.no_such_show') if @show.nil?
 
       Miro.options[:resolution] = '750x140'
-      colors = Miro::DominantColors.new("http://thetvdb.com/banners/#{@show.banner}")
-      @colors = colors.to_hex
+      unless @show.banner.nil?
+        colors = Miro::DominantColors.new("http://thetvdb.com/banners/#{@show.banner}")
+        @color = colors.to_hex[0] rescue nil
+      end
 
       if logged?
         @usershow = Usershow.for user: current_user.id, and_show: @show.id
       end
 
-      @background = @show.fanart || @show.poster
+      @background = @show.fanart || @show.poster || random_fanart
       @title = @show.name
       erb :'shows/view'
     end
