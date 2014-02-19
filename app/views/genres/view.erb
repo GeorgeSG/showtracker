@@ -1,4 +1,1 @@
-<%= t 'genres.view.genre_shows' %><br />
-<% @genre.shows.each do |show| %>
-  - <%= link_to "/shows/#{show.id}", show.name %><br />
-<% end %>
+<%= partial :'partials/show/cards' %>

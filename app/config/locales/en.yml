@@ -6,7 +6,10 @@ en:
     episode: "Episode"
     episodes: "Episodes"
     genres: "Genres"
+    genre: "Genre"
     actors: "Actors"
+    actor: "Actor"
+    networks: "Networks"
     network: "Network"
 
     home: "Home"
@@ -83,6 +86,7 @@ en:
     no_such_show: "There is no such show in the database!"
     no_such_actor: "There is no such actor in the database!"
     no_such_genre: "There is no such genre in the database!"
+    no_such_network: "There is no such network in the database!"
     no_such_user: "There is no such user in the database!"
     not_in_my_shows: "You don't have that show in your shows!"
     no_seasons_yet: "You haven't watched any seasons yet!"

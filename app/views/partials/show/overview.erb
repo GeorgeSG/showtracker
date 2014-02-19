@@ -4,13 +4,14 @@
 
     <% unless @show.network.nil? %>
       <strong><%= t 'general.network' %>:</strong>
-      <a href="/shows/search?network=<%= @show.network.id %>">
+      <a href="/networks/<%= @show.network.id %>">
         <%= @show.network.name %></a>
       <br />
     <% end %>
 
     <% unless @show.status.empty? %>
-      <strong><%= t 'shows.status' %>:</strong> <%= @show.status %><br />
+      <strong><%= t 'shows.status' %>:</strong>
+      <a href="/shows/search?&status=<%= @show.status %>"><%= @show.status %></a><br />
     <% end %>
 
     <% unless @show.airs_day.empty? && @show.airs_time.empty? %>
@@ -37,7 +38,7 @@
       <strong><%= t 'general.genres' %>:</strong>
       <%=
         @show.genres.map { |genre|
-          "<a href='/shows/search?genre=#{genre.id}'>#{genre.name}</a>"
+          "<a href='/genres/#{genre.id}'>#{genre.name}</a>"
         }.join(', ')
       %>
     <% end %>

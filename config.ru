@@ -8,6 +8,7 @@ controllers = [
   ShowTracker::ActorsController,
   ShowTracker::GenresController,
   ShowTracker::HomeController,
+  ShowTracker::NetworksController,
   ShowTracker::RESTController,
   ShowTracker::ShowsController,
   ShowTracker::UsersController
