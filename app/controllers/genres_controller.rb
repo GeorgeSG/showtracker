@@ -8,6 +8,10 @@ module ShowTracker
     helpers ShowHelpers
     helpers PagingHelpers
 
+    before do
+      @background = random_fanart
+    end
+
     get '/:genre_id', '/:genre_id/page/:page/?', integer?: :genre_id do
       @genre = Genre.with_id params[:genre_id]
       redirect '/', error: t('errors.no_such_genre') if @genre.nil?

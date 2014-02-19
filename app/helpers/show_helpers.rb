@@ -1,5 +1,9 @@
 module ShowTracker
   module ShowHelpers
+    def random_fanart
+      Show.where("rating_count > 100 AND fanart != ''").all.sample.fanart
+    end
+
     def ilike(column, value)
       "LOWER(#{column.to_s}) LIKE '%#{value.downcase}%'"
     end

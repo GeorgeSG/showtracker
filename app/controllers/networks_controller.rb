@@ -8,6 +8,10 @@ module ShowTracker
     helpers ShowHelpers
     helpers PagingHelpers
 
+    before do
+      @background = random_fanart
+    end
+
     get '/:network_id', '/:network_id/page/:page/?', integer?: :network_id do
       @network = Network.with_id params[:network_id]
       redirect '/', error: t('errors.no_such_network') if @network.nil?

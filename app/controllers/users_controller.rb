@@ -5,9 +5,17 @@ module ShowTracker
 
     helpers UserHelpers
     helpers HTMLHelpers
+    helpers ShowHelpers
+
+    before do
+      @background = random_fanart
+    end
 
     get '/my-shows', auth: :logged do
       @usershows = current_user.usershows.sort
+
+      shows = current_user.usershows.map(&:show)
+      @background = shows.sample.fanart unless shows.empty?
       @title = t('general.my_shows')
       erb :'users/my-shows'
     end

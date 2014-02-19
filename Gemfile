@@ -20,6 +20,7 @@ gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 gem 'json'
 gem 'sass', '~> 3.2.14', require: 'sass/plugin/rack'
+gem 'miro'
 
 group :development do
   gem 'awesome_print', require: false

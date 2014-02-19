@@ -6,6 +6,11 @@ module ShowTracker
 
     helpers UserHelpers
     helpers HTMLHelpers
+    helpers ShowHelpers
+
+    before do
+      @background = random_fanart
+    end
 
     get '/' do
       @shows = Show.order_by(Sequel.desc(:rating_count)).limit(10).all

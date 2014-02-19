@@ -1,6 +1,18 @@
 module ShowTracker
   # HTML Helpers - helpers for generating HTML content
   module HTMLHelpers
+    def show_status_css_class(status)
+      case status
+      when 'Continuing' then 'text-success'
+      when 'Ended'      then 'text-danger'
+      end
+    end
+
+    def pretty_date(date)
+      date = Date.parse(date)
+      date.strftime('%a, %e %B %Y')
+    end
+
     def link_to(url, text = url, options = {})
       tag :a, text, options.merge(href: url)
     end

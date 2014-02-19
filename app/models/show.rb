@@ -15,7 +15,7 @@ class Show < Sequel::Model
   end
 
   def episodes_for_season(number)
-    episodes.group_by(&:season_number)[number]
+    episodes.group_by(&:season_number)[number].sort_by!(&:episode_number)
   end
 
   def upcoming

@@ -5,10 +5,18 @@
     <div class="content <% if show.name.length > 15 %>long-title<% end %>">
       <h1><%= show.name %></h1>
       <dl>
-        <dt>Rating:</dt>
-        <dd><%= show.rating %></dd>
-        <dt>Status:</dt>
-        <dd><%= show.status %></dd>
+        <% unless show.rating.nil? || show.rating.zero? %>
+          <dt>Rating:</dt>
+          <dd><%= show.rating %></dd>
+        <% end %>
+        <% unless show.status.nil? || show.status.empty? %>
+          <dt>Status:</dt>
+          <dd class="<%= show_status_css_class(show.status) %>"><%= show.status %></dd>
+        <% end %>
+        <% unless show.running_time.nil? || show.running_time.zero? %>
+          <dt>Runtime:</dt>
+          <dd><%= show.running_time %> minutes</dd>
+        <% end %>
       </dl>
     </div>
   </a>

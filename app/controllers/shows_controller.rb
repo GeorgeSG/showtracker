@@ -8,6 +8,10 @@ module ShowTracker
     helpers PagingHelpers
     helpers ShowHelpers
 
+    before do
+      @background = random_fanart
+    end
+
     get '/', '/page/:page/?' do
       @name = params[:q] || ''
 
@@ -43,20 +47,26 @@ module ShowTracker
       dataset = dataset.order_by(Sequel.desc(:shows__rating_count))
       @shows = dataset.limit(items_per_page, @offset).all
 
-      @title = t('general.shows')
+      @title = t('general.search')
+      @subtitle = "(#{dataset.count})"
       @paging_url = NAMESPACE + '/search/'
 
-      erb :'shows/index'
+      erb :'shows/search'
     end
 
     get '/:show_id' do
       @show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if @show.nil?
 
+      Miro.options[:resolution] = '750x140'
+      colors = Miro::DominantColors.new("http://thetvdb.com/banners/#{@show.banner}")
+      @colors = colors.to_hex
+
       if logged?
         @usershow = Usershow.for user: current_user.id, and_show: @show.id
       end
 
+      @background = @show.fanart || @show.poster
       @title = @show.name
       erb :'shows/view'
     end

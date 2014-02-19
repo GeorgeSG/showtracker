@@ -8,6 +8,10 @@ module ShowTracker
     helpers ShowHelpers
     helpers PagingHelpers
 
+    before do
+      @background = random_fanart
+    end
+
     get '/:actor_id', integer?: :actor_id do
       @actor = Actor.with_id params[:actor_id]
       redirect '/', error: t('errors.no_such_actors') if @actor.nil?

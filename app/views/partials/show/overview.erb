@@ -2,16 +2,24 @@
   <div class="col-md-3">
     <h3><%= t 'shows.info' %></h3>
 
+    <% unless @show.status.empty? %>
+      <strong><%= t 'shows.status' %>:</strong>
+      <a class="<%= show_status_css_class(@show.status) %>" href="/shows/search?&status=<%= @show.status %>"><%= @show.status %></a><br />
+    <% end %>
+
+    <% unless @show.rating.nil? || @show.rating.zero? %>
+      <strong><%= t 'shows.rating' %>:</strong> <%= @show.rating %><br />
+    <% end %>
+
+    <% unless @show.running_time.nil? || @show.running_time.zero? %>
+      <strong><%= t 'shows.running_time' %>:</strong> <%= @show.running_time %> minutes<br />
+    <% end %>
+
     <% unless @show.network.nil? %>
       <strong><%= t 'general.network' %>:</strong>
       <a href="/networks/<%= @show.network.id %>">
         <%= @show.network.name %></a>
       <br />
-    <% end %>
-
-    <% unless @show.status.empty? %>
-      <strong><%= t 'shows.status' %>:</strong>
-      <a href="/shows/search?&status=<%= @show.status %>"><%= @show.status %></a><br />
     <% end %>
 
     <% unless @show.airs_day.empty? && @show.airs_time.empty? %>
@@ -23,15 +31,8 @@
     <% end %>
 
     <% unless @show.first_aired.empty? %>
-      <strong><%= t 'shows.first_aired' %>:</strong> <%= @show.first_aired %><br />
-    <% end %>
-
-    <% unless @show.rating.nil? || @show.rating.zero? %>
-      <strong><%= t 'shows.rating' %>:</strong> <%= @show.rating %><br />
-    <% end %>
-
-    <% unless @show.running_time.nil? || @show.running_time.zero? %>
-      <strong><%= t 'shows.running_time' %>:</strong> <%= @show.running_time %> minutes<br />
+      <strong><%= t 'shows.first_aired' %>:</strong>
+      <%= pretty_date(@show.first_aired) %><br />
     <% end %>
 
     <% unless @show.genres.empty? %>
@@ -47,11 +48,28 @@
   <div class="col-md-6">
     <h3><%= t 'shows.overview' %></h3>
     <%= @show.overview %>
-  </div>
 
-  <div class='col-md-3 text-center'>
-    <h3><%= t 'general.my_shows' %></h3>
-    <% if logged? && current_user.has_show?(@show.id) %>
+    <% unless @show.upcoming.empty? %>
+      <h3>Upcoming</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr><th>Episode #</th><th>Name</th><th>Airs on</th></tr>
+        </thead>
+        <tbody>
+          <% @show.upcoming.each do |episode| %>
+            <tr>
+              <td><%= "S#{episode.season_number}E#{episode.episode_number}"%></td>
+              <td><%= episode.name %></td>
+              <td><%= pretty_date(episode.first_aired) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+    <div class="col-md-3">
+      <h3>My Progress</h3>
+      <% if logged? && current_user.has_show?(@show.id) %>
       <table class="table">
         <thead>
           <tr>
@@ -61,25 +79,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-center">
-              <%= link_button "/users/increment-season/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-              <%= @usershow.season %>
-              <%= link_button "/users/decrement-season/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
-            </td>
-            <td class="text-center">
-              <%= link_button "/users/increment-episode/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
-              <%= @usershow.episode %>
-              <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
-            </td>
-            <td>
-              <%= link_button "/users/remove-show/#{@show.id}", t('general.remove'), :danger, :xs %>
-            </td>
-          </tr>
+        <tr>
+          <td class="text-center">
+            <%= link_button "/users/increment-season/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
+            <%= @usershow.season %>
+            <%= link_button "/users/decrement-season/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
+          </td>
+          <td class="text-center">
+            <%= link_button "/users/increment-episode/#{@usershow.id}", glyphicon('chevron-up'), :success, :xs, class: 'btn-hover' %>
+            <%= @usershow.episode %>
+            <%= link_button "/users/decrement-episode/#{@usershow.id}", glyphicon('chevron-down'), :danger, :xs, class: 'btn-hover' %>
+          </td>
+          <td class="text-center">
+            <%= link_button "/users/remove-show/#{@show.id}", t('general.remove'), :danger, :xs %>
+          </td>
+        </tr>
         </tbody>
       </table>
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @usershow.progress.to_i%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @usershow.progress.to_i %>%;">
+          <%= @usershow.progress.to_i %>%
+        </div>
+      </div>
     <% else %>
       <%= link_button "/users/add-show/#{@show.id}", t('general.add_to_shows'), :success %>
     <% end %>
-  </div>
+    </div>
 </div>

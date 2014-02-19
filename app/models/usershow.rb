@@ -28,6 +28,32 @@ class Usershow < Sequel::Model
     episode >= show.episodes_for_season(season).size
   end
 
+  def watched_episodes
+    all_seasons = show.seasons.reject(&:zero?)
+    episodes = all_seasons.reduce([]) do |episodes, season_number|
+      if season > season_number
+        episodes << show.episodes_for_season(season_number)
+      end
+      episodes
+    end
+
+    episodes << show.episodes_for_season(season)[0..episode - 1]
+    episodes.flatten
+  end
+
+  def progress
+    return 0 if season.zero? && episode.zero?
+
+    total_episodes = show.seasons.reject(&:zero?).map do |season_number|
+      show.episodes_for_season(season_number)
+    end
+
+    total_episode_count = total_episodes.flatten.size
+    watched_episode_count = watched_episodes.size
+
+    100 * watched_episode_count / total_episode_count.to_f
+  end
+
   def <=>(other)
     show.name <=> other.show.name
   end

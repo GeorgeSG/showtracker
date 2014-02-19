@@ -1,7 +1,7 @@
 <%= partial :'partials/layout/header' %>
 <%= partial :'partials/layout/navigation' %>
 
-<div class="container-fluid">
+<div class="container-fluid" id="site-body">
   <% %w[error success warning info].each do |key| %>
     <% if flash[key] %>
       <div class="alert fade in alert-<%= key == 'error' ? 'danger' : key %>">
