@@ -59,16 +59,6 @@ module ShowTracker
       @shows = criteria.limit(items_per_page, @offset).all
     end
 
-    def select_list_for_show(name)
-      items_per_page = 30
-
-      criteria = search_for(name).order_by(:name)
-      initialize_paging_properties(items_per_page, criteria.count)
-
-      @shows = criteria.limit(items_per_page, @offset).all
-      @shows = @shows.group_by { |show| show.name[0] }
-    end
-
     def select_cards_for_object(object)
       object_name = object.class.to_s.downcase
       items_per_page = 12

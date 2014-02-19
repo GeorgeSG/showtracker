@@ -22,17 +22,6 @@ module ShowTracker
       erb :'shows/index'
     end
 
-    get '/list', '/list/page/:page/?' do
-      items_per_page = 30
-      @name = params[:name] || ''
-
-      select_list_for_show(@name)
-
-      @paging_url = NAMESPACE + '/list/'
-      @title = t('general.shows')
-      erb :'shows/list'
-    end
-
     get '/search', '/search/page/:page/?' do
       items_per_page = 12
       name    = params[:name]
