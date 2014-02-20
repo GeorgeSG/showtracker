@@ -1,6 +1,7 @@
 module ShowTracker
   module ShowHelpers
     def random_fanart
+      return nil if Show.count.zero?
       Show.where("rating_count > 100 AND fanart != ''").all.sample.fanart
     end
 

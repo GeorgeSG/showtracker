@@ -131,7 +131,20 @@ module ShowTracker
     post '/login' do
       username = params[:username]
       password = params[:password]
-      login username, password
+
+      user = User.find(username: username)
+
+      if user.nil?
+        redirect NAMESPACE + '/login', error: t('errors.no_such_user')
+      end
+
+      password = hash_password(password, user.salt)
+      if password != user.password
+        redirect NAMESPACE + '/login', error: t('errors.incorrect_password')
+      end
+
+      session[:uid] = user.id
+      redirect '/', success: t('successes.welcome', name: user.username)
     end
 
     get '/logout', auth: :logged do
@@ -141,11 +154,28 @@ module ShowTracker
     post '/signup' do
       username         = params[:username]
       password         = params[:password]
-      confirm_password = params[:confirm_password]
+      confirm_password = params[:password_confirmed]
       email            = params[:email]
       first_name       = params[:first_name]
       last_name        = params[:last_name]
-      signup username, password, confirm_password, email, first_name, last_name
+      unless password == confirm_password
+        flash[:error] = 'The two passwords entered do not match!'
+        redirect NAMESPACE + '/login'
+      end
+
+      password_salt = hash_salt
+      password_hash = hash_password(password, password_salt)
+
+      User.create(
+        username: username,
+        password: password_hash,
+        salt: password_salt,
+        email: email,
+        first_name: first_name,
+        last_name: last_name
+      )
+
+      redirect NAMESPACE + '/login', success: t('successes.register')
     end
   end
 end
