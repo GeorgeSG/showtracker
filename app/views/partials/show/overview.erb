@@ -4,7 +4,12 @@
 
     <% unless @show.status.empty? %>
       <strong><%= t 'shows.status' %>:</strong>
-      <a class="<%= show_status_css_class(@show.status) %>" href="/shows/search?&status=<%= @show.status %>"><%= @show.status %></a><br />
+      <a
+        class="<%= show_status_css_class(@show.status) %>"
+        href="/shows/search?&status=<%= @show.status %>">
+          <%= @show.status %>
+      </a>
+      <br />
     <% end %>
 
     <% unless @show.rating.nil? || @show.rating.zero? %>

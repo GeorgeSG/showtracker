@@ -17,20 +17,20 @@
         </tr>
       </thead>
       <tbody>
-      <% @show.episodes_for_season(season).reverse.each do |episode| %>
-        <tr
-          <% if episode.upcoming? %>
-            class='warning'
-          <% elsif logged? && current_user.watched?(season, episode)%>
-            class='success'
-          <% end %>
-          >
-          <td><%= episode.episode_number %></td>
-          <td><%= episode.name %></td>
-          <td><%= pretty_date(episode.first_aired) %></td>
-          <td><a href="#" class="btn btn-xs btn-primary">Details</a></td>
-        </tr>
-      <% end %>
+        <% @show.episodes_for_season(season).reverse.each do |episode| %>
+          <tr
+            <% if episode.upcoming? %>
+              class='warning'
+            <% elsif logged? && current_user.watched?(season, episode)%>
+              class='success'
+            <% end %>
+            >
+            <td><%= episode.episode_number %></td>
+            <td><%= episode.name %></td>
+            <td><%= pretty_date(episode.first_aired) %></td>
+            <td><a href="#" class="btn btn-xs btn-primary">Details</a></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

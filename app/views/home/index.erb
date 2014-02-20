@@ -16,16 +16,16 @@
     <% @shows.first(5).each do |show| %>
       <a href="/shows/<%= show.id %>" title="<%= show.name %>">
         <%= image "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
-          <p><%= show.name %></p>
-        <% end %>
+        <p><%= show.name %></p>
       </a>
+    <% end %>
   </div>
   <div class='col-md-6'>
     <% @shows.last(5).each do |show| %>
       <a href="/shows/<%= show.id %>" title="<%= show.name %>">
         <%= image "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
-          <p><%= show.name %></p>
-        <% end %>
+        <p><%= show.name %></p>
       </a>
+    <% end %>
   </div>
 </div>
