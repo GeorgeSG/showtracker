@@ -61,7 +61,7 @@ describe Usershow do
     it 'can return watched episodes' do
       show = build(:show).save
       user = build(:user).save
-      usershow = build(:usershow, show: show, user: user, season: 3, episode: 2 ).save
+      usershow = build(:usershow, show: show, user: user, season: 3, episode: 2).save
       episode_one = build(:episode, season_number: 1, episode_number: 1).save
       episode_two = build(:episode, season_number: 2, episode_number: 3).save
       episode_three = build(:episode, season_number: 3, episode_number: 2).save

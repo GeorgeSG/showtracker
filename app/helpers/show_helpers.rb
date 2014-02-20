@@ -71,6 +71,5 @@ module ShowTracker
 
       @shows = dataset.limit(items_per_page, @offset).all
     end
-
   end
 end

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :show do |f|
-    air_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Weekend']
+    air_days = %w[Monday, Tuesday, Wednesday, Thursday, Friday, Weekend]
     runtimes = [30, 45, 60, 90]
-    statuses = ['Continuing', 'Ended']
+    statuses = %w[Continuing, Ended]
 
     f.name { Faker::Internet.user_name }
     f.api_id { Faker::Number.number(6).to_s }

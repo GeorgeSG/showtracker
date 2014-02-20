@@ -43,12 +43,14 @@ module ShowTracker
 
     I18n.enforce_available_locales = false
 
+    Miro.options[:resolution] = '750x140'
+
     configure :production do
       disable :show_exceptions
     end
 
     not_found do
-      @title = "Not Found"
+      @title = 'Not Found'
       erb :'not_found'
     end
   end

@@ -45,8 +45,8 @@ describe User do
     it 'retrieves all shows for this user' do
       show_one = build(:show).save
       show_two = build(:show).save
-      usershow_one = build(:usershow, show: show_one, user: @user ).save
-      usershow_two = build(:usershow, show: show_two, user: @user ).save
+      usershow_one = build(:usershow, show: show_one, user: @user).save
+      usershow_two = build(:usershow, show: show_two, user: @user).save
 
       @user.shows.should =~ [show_one, show_two]
 

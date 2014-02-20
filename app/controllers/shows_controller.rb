@@ -47,7 +47,6 @@ module ShowTracker
       @show = Show.with_id params[:show_id]
       redirect '/', error: t('errors.no_such_show') if @show.nil?
 
-      Miro.options[:resolution] = '750x140'
       unless @show.banner.nil?
         colors = Miro::DominantColors.new("http://thetvdb.com/banners/#{@show.banner}")
         @color = colors.to_hex[0] rescue nil
