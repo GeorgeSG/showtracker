@@ -15,20 +15,14 @@
       <strong><%= t 'shows.running_time' %>:</strong> <%= @show.running_time %> minutes<br />
     <% end %>
 
+    <strong>Airs:</strong>
+    <% if @show.network.nil? && @show.airs_day.empty? && @show.airs_time.empty? %> N/A <% end %>
+    <% unless @show.airs_day.empty? %><%= @show.airs_day %><% end %>
+    <% unless @show.airs_time.empty? %><%= " at #{@show.airs_time}" %><% end %>
     <% unless @show.network.nil? %>
-      <strong><%= t 'general.network' %>:</strong>
-      <a href="/networks/<%= @show.network.id %>">
-        <%= @show.network.name %></a>
-      <br />
+      <%= " on <a href='/networks/#{@show.network.id}'>#{@show.network.name}</a>" %>
     <% end %>
-
-    <% unless @show.airs_day.empty? && @show.airs_time.empty? %>
-      <strong>Airs:</strong> <%= "#{@show.airs_day} at #{@show.airs_time}" %><br />
-    <% end %>
-
-    <% unless @show.content_rating.empty? %>
-      <strong><%= t 'shows.content_rating' %>:</strong> <%= @show.content_rating %><br />
-    <% end %>
+    <br />
 
     <% unless @show.first_aired.empty? %>
       <strong><%= t 'shows.first_aired' %>:</strong>
