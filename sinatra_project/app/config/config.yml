@@ -6,7 +6,7 @@ locales_path:     './app/config/locales/'
 # Development specific settings
 development:
   db_host:     'localhost'
-  db_name:     'showtracker'
+  db_name:     'showtracker_sinatra'
   db_user:     'showtracker'
   db_password: 'showtracker'
 
