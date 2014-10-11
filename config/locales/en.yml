@@ -58,6 +58,7 @@ en:
     index:
       header: "Welcome to ShowTracker!"
       message: "One place where you can keep all the information about your favourite shows!"
+      featured_shows: "Featured Shows"
   actors:
     view:
       actor_shows: "Shows that actor stars in:"

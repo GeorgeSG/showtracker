@@ -12,4 +12,6 @@ class Show < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :network
+
+  scope :top_rated, -> { order('rating_count DESC').limit(10) }
 end

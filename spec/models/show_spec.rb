@@ -65,4 +65,9 @@ describe Show do
       expect(subject.subscriptions).to include(subscription)
     end
   end
+
+
+  describe "#top_rated" do
+    pending "should show the 10 top rated shows"
+  end
 end
