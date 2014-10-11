@@ -1,6 +1,12 @@
 class ShowsController < ApplicationController
   def index
-    @shows = Show.all
+    page = params[:page] || 1
+
+    if params[:name]
+      @shows = Show.with_name_like(params[:name]).page(page)
+    else
+      @shows = Show.page(page)
+    end
   end
 
   def show

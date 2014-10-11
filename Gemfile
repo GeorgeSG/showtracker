@@ -8,6 +8,7 @@ gem 'jquery-rails'
 
 gem 'pg'
 gem 'devise'
+gem 'kaminari'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

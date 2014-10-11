@@ -18,6 +18,10 @@ class Show < ActiveRecord::Base
   scope :continuing, -> { where(status: 'continuing') }
   scope :ended,      -> { where(status: 'ended') }
 
+  scope :with_name_like, -> (name) { where('LOWER(name) LIKE ?', "%#{name.downcase}%") }
+
+
+  paginates_per 5
 
   def seasons
     episodes.group_by(&:season_number).keys

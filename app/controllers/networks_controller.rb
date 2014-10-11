@@ -1,5 +1,6 @@
 class NetworksController < ApplicationController
   def show
-    @shows = Network.find_by_id(params[:id]).shows
+    page = params[:page] || 1
+    @shows = Network.find_by_id(params[:id]).shows.page(page)
   end
 end

@@ -78,6 +78,10 @@ describe Show do
     describe "#ended" do
       pending "should show only ended shows"
     end
+
+    describe "#with_name_like" do
+      pending "should show only ended shows"
+    end
   end
 
   describe "#seasons" do

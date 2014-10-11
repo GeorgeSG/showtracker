@@ -2,5 +2,5 @@
   <% shows.each do |show| %>
     <%= render 'shows/card', show: show %>
   <% end %>
-  %= partial :'partials/paging'
+  <%= paginate shows %>
 </div>

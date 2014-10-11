@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
   def show
-    @shows = Genre.find_by_id(params[:id]).shows
+    page = params[:page] || 1
+    @shows = Genre.find_by_id(params[:id]).shows.page(page)
   end
 end
