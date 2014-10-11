@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Showtracker
   class Application < Rails::Application
+    
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
+
     config.generators do |g|
       g.test_framework :rspec
       

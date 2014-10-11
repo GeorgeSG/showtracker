@@ -20,4 +20,96 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  general:
+    show_name: "Show Name"
+    season: "Season"
+    seasons: "Seasons"
+    episode: "Episode"
+    episodes: "Episodes"
+    genres: "Genres"
+    genre: "Genre"
+    actors: "Actors"
+    actor: "Actor"
+    networks: "Networks"
+    network: "Network"
+
+    home: "Home"
+    shows: "Shows"
+    my_shows: "My Shows"
+    search: "Search"
+    results: "Search Results"
+
+    options: "Options"
+    preferences: "Preferences"
+
+    sign_up: "Sign Up"
+    login: "Log In"
+    logout: "Log Out"
+    reset: "Reset"
+
+    remove: "Remove"
+    remove_from_shows: "Remove from My Shows"
+    add_to_shows: "Add to My Shows"
+  layout:
+    toggle_navigation: "Toggle Navigation"
+    brand: "ShowTracker.eu"
+    copyright: "All rights reserved"
+  home:
+    index:
+      header: "Welcome to ShowTracker!"
+      message: "One place where you can keep all the information about your favourite shows!"
+  actors:
+    view:
+      actor_shows: "Shows that actor stars in:"
+  genres:
+    view:
+      genre_shows: "Shows in that genre:"
+  shows:
+    info: "Show Info"
+    status: "Status"
+    airs_on: "Airs On"
+    airs_at: "Airs At"
+    content_rating: "Content Rating"
+    first_aired: "First Aired"
+    language: "Language"
+    rating: "Rating"
+    running_time: "Runtime"
+    overview: "Overview"
+    specials: "Specials"
+
+    search:
+      no_shows_found: "No shows found."
+  users:
+    username: "Username"
+    password: "Password"
+    confirm_password: "Confirm Password"
+    email: "Email"
+    first_name: "First Name"
+    last_name: "Last Name"
+    create_account: "Create Account"
+    remember_me: "Remember me"
+    not_registered_message: "Not Registered? Register now!"
+
+    my_shows:
+      no_shows_yet: "You have no shows yet."
+  successes:
+    welcome: "Welcome, %{name}! Enjoy your stay!"
+    added_show: "You've successfully added %{name} to your shows!"
+    removed_show: "You've successfully removed %{name} from your shows!"
+    episode_watched: "You've successfully marked Season %{season} Episode %{episode} of %{show} as watched!"
+    episode_unwatched: "You've successfully marked Season %{season} Episode %{episode} of %{show} as unwatched!"
+    season_watched: "You've successfully marked Season %{season} of %{show} as watched!"
+    season_unwatched: "You've successfully marked Season %{season} of %{show} as unwatched!"
+    logout: "You've logged out successfully! Have a nice day!"
+    register: "You've registered succefully!"
+  errors:
+    not_logged_in: "You need to be logged in to access this page!"
+    no_such_show: "There is no such show in the database!"
+    no_such_actor: "There is no such actor in the database!"
+    no_such_genre: "There is no such genre in the database!"
+    no_such_network: "There is no such network in the database!"
+    no_such_user: "There is no such user in the database!"
+    not_in_my_shows: "You don't have that show in your shows!"
+    no_seasons_yet: "You haven't watched any seasons yet!"
+    incorrect_password: "You've entered an incorrect password!"
+

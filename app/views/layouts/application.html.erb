@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Showtracker</title>
+  <title>ShowTracker</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!--<style>
+      body {
+        background-image: url("http://thetvdb.com/banners/<%= @background %>");
+        background-size: cover;
+        background-attachment: fixed;
+      }
+  </style> -->
 </head>
 <body>
+  <div id="wrap">
+    <div class="container">
+      <%= render 'layouts/navigation' %>
+      <div class="container-fluid" id="site-body">
+        <!-- flash messages -->
 
-<%= yield %>
+        <% unless @title.nil? %>
+          <h1>
+            <%= @title %>
+            <% unless @subtitle.nil? %><small><%= @subtitle %></small><% end %>
+          </h1>
+        <% end %>
 
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div id="footer">
+      <p class="text-muted"><!--<%= t 'layout.copyright' %>--></p>
+    </div>
+  </div>
 </body>
 </html>

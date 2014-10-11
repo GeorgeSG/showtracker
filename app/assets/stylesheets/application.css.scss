@@ -1,0 +1,216 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* @import "fonts"; */
+
+@import "bootstrap.min";
+@import "bootstrap-dialog.min";
+@import "bootstrap-theme.min";
+
+/*
+ * Bootstrap Glyphicon Font
+ */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(asset_path('glyphicons-halflings-regular.eot'));
+  src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'), url(asset_path('glyphicons-halflings-regular.woff')) format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'), url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+}
+
+body {
+    padding-top: 20px;
+}
+
+html,body {
+    height: 100%;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.glyphicon {
+    top: 2px;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+#site-body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background: rgba(255,255,255,0.95);
+}
+
+#footer {
+    margin-top: 20px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    display: block;
+    width: 33%;
+    border-bottom: 1px solid #000;
+}
+
+.btn-hover {
+    font-weight: normal;
+    color: #333333;
+    cursor: pointer;
+    background: none;
+    background-color: inherit;
+    border-color: transparent;
+}
+
+.btn-hover-alt {
+    font-weight: normal;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: inherit;
+    border-color: transparent;
+}
+
+.list-header {
+    display: block;
+    clear: both;
+    width: 100px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid #003bad;
+    text-align: left;
+    font-size: 1.4em;
+}
+
+#show-tabs {
+    margin-top: 10px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 350px;
+    height: 160px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 15px 20px;
+    line-height: 1.5em;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: 'RobotoLight';
+    font-size: 1.1em;
+    color: #000;
+    cursor: pointer;
+}
+
+.card:hover {
+    color: #003bad;
+    text-decoration: none;
+    outline: 5px solid #ddd;
+}
+
+.card:last-child {
+    margin-right: 0;
+}
+
+.card .content {
+    position: relative;
+    padding-left: 120px;
+    height: 100%;
+}
+
+.card .content.long-title {
+    display: table;
+    height: 100%;
+}
+
+.card .content.long-title h1 {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.card .content.long-title dl {
+    display: none;
+    top: 30px;
+}
+
+.card .content h1 {
+    margin-top: 15px;
+    margin-bottom: 3px;
+    text-align: center;
+    line-height: 1.2em;
+}
+
+.card .content dl {
+    position: absolute;
+    top: 26px;
+    bottom: 6px;
+    width: 190px;
+    text-align: left;
+}
+
+.card .content dl dt {
+    float: left;
+    margin-right: 3px;
+}
+
+.card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.card h1 {
+    font-size: 20px;
+}
+
+.card.small {
+    height: 25px;
+    margin: 2px;
+    width: 323px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.card.small:hover {
+    outline: none;
+}
+
+.card.small .content {
+    line-height: 25px;
+    text-align: left;
+    padding-left: 40px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.card.small .content h1 {
+    margin-top: 0;
+    font-size: 1em;
+    line-height: 1.9em;
+    text-align: left;
+}
