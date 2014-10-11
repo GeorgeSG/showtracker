@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Network do
+  it { should have_many :shows }
+
   subject { create :network }
 
   context "validations" do

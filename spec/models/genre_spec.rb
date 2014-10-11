@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Genre do
+  it { should have_and_belong_to_many :shows }
+
   subject { create :genre }
 
   context "validations" do

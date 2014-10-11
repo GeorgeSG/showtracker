@@ -3,6 +3,10 @@ require 'rails_helper'
 describe Show do
   it { should have_many(:subscriptions) }
   it { should have_many(:users).through(:subscriptions) }
+  it { should have_many(:episodes) }
+  it { should have_and_belong_to_many(:actors) }
+  it { should have_and_belong_to_many(:genres) }
+  it { should belong_to(:network) }
 
   let (:network) { create :network }
   subject { create :show, network: network }

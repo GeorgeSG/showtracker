@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Actor do
+  it { should have_and_belong_to_many :shows }
+
   subject { create :actor }
 
   context "validations" do

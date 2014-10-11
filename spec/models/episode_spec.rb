@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Episode do
+  it { should belong_to :show }
 
   describe "#create" do
     context "validations" do

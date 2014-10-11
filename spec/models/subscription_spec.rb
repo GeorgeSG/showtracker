@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Subscription do
+  it { should belong_to :show }
+  it { should belong_to :user }
+
   let (:network) { create :network }
   let (:show) { create :show, network: network }
   let (:user) { create :user }
