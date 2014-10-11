@@ -20,7 +20,5 @@ FactoryGirl.define do
     last_updated            { Faker::Date.backward(14) }
     season_api_id           { Faker::Number.number(20) }
     series_api_id           { Faker::Number.number(20) }
-
-    show
   end
 end

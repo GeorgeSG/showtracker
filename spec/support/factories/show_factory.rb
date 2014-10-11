@@ -10,7 +10,7 @@ FactoryGirl.define do
       'Sunday'
     ].freeze
 
-    name           { Faker::Commerce.product_name }
+    name           { Faker::Name.name }
     api_id         { Faker::Number.number(20) }
     airs_day       { DAYS_OF_WEEK.sample }
     airs_time      { Faker::Time.forward(2, [:morning, :evening].sample) }
@@ -26,7 +26,5 @@ FactoryGirl.define do
     added_by       { Faker::Name.name }
 
     last_updated   { Faker::Date.backward(14) }
-
-    network
   end
 end
