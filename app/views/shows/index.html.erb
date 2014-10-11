@@ -1,0 +1,9 @@
+<div class="pull-left">
+  <div class="btn-group">
+    <a href="/shows/search" class="btn btn-primary btn-hover btn-xs">All</a>
+    <a href="/shows/search?status=Continuing" class="btn btn-primary btn-hover btn-xs">Continuing</a>
+    <a href="/shows/search?status=Ended" class="btn btn-primary btn-hover btn-xs">Ended</a>
+  </div>
+</div>
+<div class="clearfix"></div>
+<%= render 'shows/cards', shows: @shows %>

@@ -1,0 +1,22 @@
+ <%= link_to show_path(show), class: 'card' do %>
+  <%= image_tag "http://thetvdb.com/banners/#{show.poster}" %>
+  <div class="content <% if show.name.length > 15 %>long-title<% end %>">
+    <h1><%= show.name %></h1>
+    <dl>
+      <% unless show.rating.blank? || show.rating.zero? %>
+        <dt>Rating:</dt>
+        <dd><%= show.rating %></dd>
+      <% end %>
+
+      <% unless show.status.blank? %>
+        <dt>Status:</dt>
+        <dd class="<%= show_status_css_class(show.status) %>"><%= show.status %></dd>
+      <% end %>
+
+      <% unless show.running_time.blank? || show.running_time.zero? %>
+        <dt>Runtime:</dt>
+        <dd><%= show.running_time %> minutes</dd>
+      <% end %>
+    </dl>
+  </div>
+<% end %>

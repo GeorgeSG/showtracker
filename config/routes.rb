@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
 
-  resources :shows, only: [:index, :show]
+  resources :shows,    only: [:index, :show]
+  resources :actors,   only: [:index, :show]
+  resources :genres,   only: [:index, :show]
+  resources :networks, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

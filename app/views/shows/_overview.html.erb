@@ -25,7 +25,7 @@
     <% unless @show.airs_day.empty? %><%= @show.airs_day %><% end %>
     <% unless @show.airs_time.empty? %><%= " at #{@show.airs_time}" %><% end %>
     <% unless @show.network.nil? %>
-      on <%= link_to @show.network.name, '#' %>
+      on <%= link_to @show.network.name, network_path(@show.network) %>
     <% end %>
     <br />
 
@@ -36,11 +36,9 @@
 
     <% unless @show.genres.empty? %>
       <strong><%= t('general.genres') %>:</strong>
-      <%=
-        @show.genres.map { |genre|
-          "<a href='/genres/#{genre.id}'>#{genre.name}</a>"
-        }.join(', ')
-      %>
+      <% @show.genres.map do |genre| %>
+        <%= link_to genre.name, genre_path(genre) %>
+      <% end %>
     <% end %>
   </div>
 

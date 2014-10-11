@@ -20,7 +20,9 @@
     <div class="container">
       <%= render 'layouts/navigation' %>
       <div class="container-fluid" id="site-body">
-        <!-- flash messages -->
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: "alert fade in alert-#{name}" %>
+        <% end %>
 
         <% unless @title.nil? %>
           <h1>

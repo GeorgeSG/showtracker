@@ -1,0 +1,4 @@
+<% if @shows.empty? %>
+  <p><%= t 'shows.search.no_shows_found' %></p>
+<% end %>
+<%= render 'shows/cards', shows: @shows %>
