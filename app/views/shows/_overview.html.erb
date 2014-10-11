@@ -1,0 +1,118 @@
+<div class="tab-pane fade in active" id="info">
+  <div class="col-md-3">
+    <h3><%= t('shows.info') %></h3>
+
+    <% unless @show.status.empty? %>
+      <strong><%= t('shows.status') %>:</strong>
+      <a
+        class="<%= show_status_css_class(@show.status) %>"
+        href="/shows/search?&status=<%= @show.status %>">
+          <%= @show.status %>
+      </a>
+      <br />
+    <% end %>
+
+    <% unless @show.rating.nil? || @show.rating.zero? %>
+      <strong><%= t('shows.rating') %>:</strong> <%= @show.rating %><br />
+    <% end %>
+
+    <% unless @show.running_time.nil? || @show.running_time.zero? %>
+      <strong><%= t('shows.running_time') %>:</strong> <%= @show.running_time %> minutes<br />
+    <% end %>
+
+    <strong>Airs:</strong>
+    <% if @show.network.nil? && @show.airs_day.empty? && @show.airs_time.empty? %> N/A <% end %>
+    <% unless @show.airs_day.empty? %><%= @show.airs_day %><% end %>
+    <% unless @show.airs_time.empty? %><%= " at #{@show.airs_time}" %><% end %>
+    <% unless @show.network.nil? %>
+      on <%= link_to @show.network.name, '#' %>
+    <% end %>
+    <br />
+
+    <% unless @show.first_aired.empty? %>
+      <strong><%= t('shows.first_aired') %>:</strong>
+      <%= @show.first_aired %><br />
+    <% end %>
+
+    <% unless @show.genres.empty? %>
+      <strong><%= t('general.genres') %>:</strong>
+      <%=
+        @show.genres.map { |genre|
+          "<a href='/genres/#{genre.id}'>#{genre.name}</a>"
+        }.join(', ')
+      %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h3><%= t('shows.overview') %></h3>
+    <%= @show.overview %>
+
+    <% unless @show.upcoming_episodes.empty? %>
+      <h3>Upcoming</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Episode #</th><th>Name</th><th>Airs on</th></tr>
+        </thead>
+        <tbody>
+          <% @show.upcoming.each do |episode| %>
+            <tr>
+              <td><%= "S#{episode.season_number}E#{episode.episode_number}"%></td>
+              <td><%= episode.name %></td>
+              <td><%= episode.first_aired %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+    <div class="col-md-3">
+      <h3>My Progress</h3>
+      <% if user_signed_in? && current_user.shows.include?(@show) %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t 'general.season' %></th>
+            <th class="text-center"><%= t 'general.episode' %></th>
+            <th class="text-center"><%= t 'general.options' %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="text-center">
+            <%= link_to glyphicon('chevron-up'), "/users/increment-season/#{@usershow.id}", class: 'btn btn-success btn-xs btn-hover' %>
+            <%= @usershow.season %>
+            <%= link_to glyphicon('chevron-down'), "/users/decrement-season/#{@usershow.id}", class: 'btn btn-danger btn-xs btn-hover' %>
+          </td>
+          <td class="text-center">
+            <%= link_to glyphicon('chevron-up'), "/users/increment-episode/#{@usershow.id}", class: 'btn btn-success btn-xs btn-hover' %>
+            <%= @usershow.episode %>
+            <%= link_to glyphicon('chevron-down'), "/users/decrement-episode/#{@usershow.id}", class: 'btn btn-danger btn-xs btn-hover' %>
+          </td>
+          <td class="text-center">
+            <a
+              href="/users/remove-show/<%= @show.id %>"
+              class="btn btn-danger btn-xs confirm"
+              data-confirm="Are you sure you want to remove this show from your shows?">
+                <%=  t('general.remove') %>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="progress progress-striped">
+        <div
+          class="progress-bar progress-bar-success"
+          role="progressbar"
+          aria-valuenow="<%= @usershow.progress.to_i%>"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: <%= @usershow.progress.to_i %>%;">
+            <%= @usershow.progress.to_i %>%
+        </div>
+      </div>
+    <% else %>
+      <%= link_to t('general.add_to_shows'), "/users/add-show/#{@show.id}", class: 'btn btn-success' %>
+    <% end %>
+    </div>
+</div>

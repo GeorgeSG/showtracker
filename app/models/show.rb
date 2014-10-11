@@ -14,4 +14,20 @@ class Show < ActiveRecord::Base
   validates_presence_of :network
 
   scope :top_rated, -> { order('rating_count DESC').limit(10) }
+
+  scope :continuing, -> { where(status: 'continuing') }
+  scope :ended,      -> { where(status: 'ended') }
+
+
+  def seasons
+    episodes.group_by(&:season_number).keys
+  end
+
+  def seasons_count
+    seasons.reject(&:zero?).count
+  end
+
+  def upcoming_episodes
+    episodes.select(&:upcoming?)
+  end
 end

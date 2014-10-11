@@ -10,26 +10,5 @@
     <% end %>
   </p>
 </div>
-<h3><%= t('home.featured_shows') %></h3>
-<div class="row">
-  <% if @shows.empty? %>
-    <div class='col-md-12'> <%= t('search.no_shows_found') %></div>
-  <% else %>
-    <div class='col-md-6 text-center'>
-      <% @shows.first(5).each do |show| %>
-        <a href="/shows/<%= show.id %>" title="<%= show.name %>">
-          <%= image_tag "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
-          <p><%= show.name %></p>
-        </a>
-      <% end %>
-    </div>
-    <div class='col-md-6 text-center'>
-      <% @shows.last(5).each do |show| %>
-        <a href="/shows/<%= show.id %>" title="<%= show.name %>">
-          <%= image_tag "http://thetvdb.com/banners/#{show.banner}", style: "max-width: 530px" %>
-          <p><%= show.name %></p>
-        </a>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+
+<%= render 'featured_shows' %>

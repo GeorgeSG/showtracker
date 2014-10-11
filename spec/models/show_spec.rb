@@ -66,8 +66,29 @@ describe Show do
     end
   end
 
+  context "scopes" do
+    describe "#top_rated" do
+      pending "should show the 10 top rated shows"
+    end
 
-  describe "#top_rated" do
-    pending "should show the 10 top rated shows"
+    describe "#continuing" do
+      pending "should show only continuing shows"
+    end
+
+    describe "#ended" do
+      pending "should show only ended shows"
+    end
+  end
+
+  describe "#seasons" do
+    pending
+  end
+
+  describe "#seasons_count" do
+    pending
+  end
+
+  describe "#upcoming_episodes" do
+    pending
   end
 end

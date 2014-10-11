@@ -1,0 +1,17 @@
+<div class="text-center" style="background:<%= @color %>">
+  <%= image_tag "http://thetvdb.com/banners/#{@show.banner}" %>
+</div>
+
+<%= render 'shows/tabs' %>
+<div class="tab-content">
+  <%= render 'shows/overview' %>
+  <%= render 'shows/actors' %>
+  <%= render 'shows/seasons' %>
+</div>
+
+<script>
+$('#show-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>

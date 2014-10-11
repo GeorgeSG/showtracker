@@ -1,0 +1,37 @@
+<% @show.seasons.each do |season| %>
+  <div class="tab-pane fade in" id="season<%= season %>">
+    <h3>
+      <% if season.zero? %>
+        <%= t('shows.specials') %>
+      <% else %>
+        <%= "#{t('general.season')} #{season}" %>
+      <% end %>
+    </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Episode #</th>
+          <th>Name</th>
+          <th>Air Date</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @show.episodes_for_season(season).reverse.each do |episode| %>
+          <tr
+            <% if episode.upcoming? %>
+              class='warning'
+            <% elsif user_signed_in? && current_user.watched?(season, episode)%>
+              class='success'
+            <% end %>
+            >
+            <td><%= episode.episode_number %></td>
+            <td><%= episode.name %></td>
+            <td><%= pretty_date(episode.first_aired) %></td>
+            <td><a href="#" class="btn btn-xs btn-primary">Details</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
