@@ -1,0 +1,12 @@
+class CreateSubscriptions < ActiveRecord::Migration
+  def change
+    create_table :subscriptions do |t|
+      t.integer :season, default: 0
+      t.integer :episode, default: 0
+
+      t.references :show
+
+      t.timestamps
+    end
+  end
+end
