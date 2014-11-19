@@ -4,16 +4,16 @@
   <title>ShowTracker</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!--<style>
+  <style>
       body {
-        background-image: url("http://thetvdb.com/banners/<%= @background %>");
+        background-image: url("images/<%= random_fanart %>");
         background-size: cover;
         background-attachment: fixed;
       }
-  </style> -->
+  </style>
 </head>
 <body>
   <div id="wrap">

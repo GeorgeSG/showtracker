@@ -11,6 +11,9 @@ module Showtracker
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
+    config.autoload_paths += %W(#{config.root}/app/lib)
+    config.autoload_paths += %W(#{config.root}/app/workers)
+
     config.generators do |g|
       g.test_framework :rspec
 

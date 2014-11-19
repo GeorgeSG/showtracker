@@ -53,7 +53,7 @@
           <tr><th>Episode #</th><th>Name</th><th>Airs on</th></tr>
         </thead>
         <tbody>
-          <% @show.upcoming.each do |episode| %>
+          <% @show.upcoming_episodes.each do |episode| %>
             <tr>
               <td><%= "S#{episode.season_number}E#{episode.episode_number}"%></td>
               <td><%= episode.name %></td>

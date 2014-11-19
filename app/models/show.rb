@@ -9,9 +9,7 @@ class Show < ActiveRecord::Base
   has_and_belongs_to_many :actors
   has_and_belongs_to_many :genres
 
-
   validates_presence_of :name
-  validates_presence_of :network
 
   scope :top_rated, -> { order('rating_count DESC').limit(10) }
 
@@ -21,7 +19,7 @@ class Show < ActiveRecord::Base
   scope :with_name_like, -> (name) { where('LOWER(name) LIKE ?', "%#{name.downcase}%") }
 
 
-  paginates_per 5
+  paginates_per 15
 
   def seasons
     episodes.group_by(&:season_number).keys
@@ -33,5 +31,10 @@ class Show < ActiveRecord::Base
 
   def upcoming_episodes
     episodes.select(&:upcoming?)
+  end
+
+  def episodes_for_season(number)
+    return [] if episodes.empty?
+    episodes.group_by(&:season_number)[number].sort_by!(&:episode_number)
   end
 end

@@ -14,10 +14,9 @@ describe Show do
   describe "#create" do
     context "validations" do
       it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:network) }
     end
 
-    context "without network" do
+    context "without name" do
       it "does not save" do
         expect { Show.create }.not_to change(Show, :count)
       end
@@ -93,6 +92,10 @@ describe Show do
   end
 
   describe "#upcoming_episodes" do
+    pending
+  end
+
+  describe "#episodes_for_season" do
     pending
   end
 end

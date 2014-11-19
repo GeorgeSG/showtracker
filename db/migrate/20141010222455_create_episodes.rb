@@ -24,7 +24,7 @@ class CreateEpisodes < ActiveRecord::Migration
       t.string :thumb_added
       t.integer :thumb_height
       t.integer :thumb_width
-      
+
       t.references :show, index: true
 
       t.timestamps

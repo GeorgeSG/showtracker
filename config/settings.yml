@@ -1,0 +1,3 @@
+tvdb:
+  series_url: 'http://thetvdb.com/api/%{api_key}/series/%{series_id}/all/en.xml'
+  banners_url: 'http://thetvdb.com/banners/'

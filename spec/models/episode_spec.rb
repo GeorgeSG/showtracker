@@ -5,7 +5,6 @@ describe Episode do
 
   describe "#create" do
     context "validations" do
-      it { should validate_presence_of(:name) }
       it { should validate_presence_of(:show) }
     end
 
@@ -23,5 +22,9 @@ describe Episode do
         expect { Episode.create params }.to change(Episode, :count)
       end
     end
+  end
+
+  describe "#upcoming?" do
+    pending
   end
 end

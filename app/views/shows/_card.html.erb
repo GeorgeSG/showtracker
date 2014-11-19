@@ -1,5 +1,5 @@
  <%= link_to show_path(show), class: 'card' do %>
-  <%= image_tag "http://thetvdb.com/banners/#{show.poster}" %>
+  <%= image_tag show.poster %>
   <div class="content <% if show.name.length > 15 %>long-title<% end %>">
     <h1><%= show.name %></h1>
     <dl>
